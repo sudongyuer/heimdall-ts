@@ -45,6 +45,10 @@ function getOenAPI3YmlFileName(dir) {
     return fs.readdirSync(path.resolve(cwd(), dir)).filter(item => (item.includes('oas3') && item.includes('yml')))
 }
 
+/**
+ *  生成OpenAPi3的文件名数据(只包含oas3的json文件)
+ * @param dir
+ */
 function getOenAPI3JsonFileName(dir) {
     return fs.readdirSync(path.resolve(cwd(), dir)).filter(item => (item.includes('oas3') && item.includes('json')))
 }
