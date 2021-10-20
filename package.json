@@ -26,5 +26,8 @@
   "devDependencies": {
     "watch": "^1.0.2",
     "@types/node": "^16.10.5"
+  },
+  "haimdall":{
+
   }
 }

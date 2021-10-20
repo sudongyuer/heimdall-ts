@@ -54,6 +54,22 @@ function getOenAPI3JsonFileName(dir) {
 }
 
 /**
+ * 生成OpenAPi2的文件名数据(只包含oas3的yml文件)
+ * @param dir
+ */
+function getOenAPI2YmlFileName(dir) {
+    return fs.readdirSync(path.resolve(cwd(), dir)).filter(item => (item.includes('oas2') && item.includes('yml')))
+}
+
+/**
+ *  生成OpenAPi2的文件名数据(只包含oas3的json文件)
+ * @param dir
+ */
+function getOenAPI2JsonFileName(dir) {
+    return fs.readdirSync(path.resolve(cwd(), dir)).filter(item => (item.includes('oas2') && item.includes('json')))
+}
+
+/**
  * 创建指定文件夹
  * @param dir 需要创建的文件目录 tips:创建的时候不要在开头写/了，直接demo/xxx
  */
@@ -83,5 +99,8 @@ export {
     getOenAPI3YmlFileName,
     getOenAPI3JsonFileName,
     generateFile,
-    generateDir
+    generateDir,
+    getOenAPI2YmlFileName,
+    getOenAPI2JsonFileName
+
 }

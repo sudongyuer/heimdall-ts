@@ -2,14 +2,17 @@ import {Command} from "commander";
 import {cwd} from "process";
 import {createRequire} from "module";
 import {createApi} from '../generate/generate.js'
+import * as path from "path";
+import {getPkgMaifest} from "../utils/file/index.js";
+
 const require = createRequire(import.meta.url);
 let shell = require('shelljs');
 console.log(cwd())
-import { getPkgMaifest} from "../utils/file/index.js";
 
 //初始化命令行帮助信息，并获取命令行参数
 
 const options = getCommandOptions()
+
 
 //生成API入口
 if (options.generate) {
@@ -19,6 +22,15 @@ if (options.generate) {
     //2.生成api文件
     await createApi()
 
+} else if (options.log) {
+    const projectName = getProjectName()
+    //1.执行下载文件命令
+    await gitCloneProject(projectName,true)
+    //2.执行打印日志的命令
+    shell.exec('git log --pretty=" %h %ci %s "', {
+            cwd: `${path.resolve(cwd(),getProjectName())}`
+        }
+    )
 }
 
 
@@ -26,10 +38,11 @@ if (options.generate) {
  * 初始化命令行，并获取命令参数
  * @returns {OptionValues}
  */
-function getCommandOptions(): { generate: boolean } {
+function getCommandOptions(): { generate: boolean, log: string } {
     //初始化命令行帮助信息
     const program = new Command();
     program.option('-g, --generate', 'generate API ');
+    program.option('-l, --log', 'show stoplight git log ');
     program.addHelpText('after', `
 Example call:
   $ haimdall -h --help`);
@@ -53,12 +66,22 @@ function getProjectName(): string {
 /**
  * 克隆项目
  */
-function gitCloneProject(projectName) {
+function gitCloneProject(projectName,isLog=false) {
     return new Promise<void>((resolve, reject) => {
         shell.exec(`git clone https://sudongyu:YUANCxzeJwiVhzQio18v@git.stoplight.io/floozy/${projectName}.git`, {
             cwd: `${cwd()}`
         }, () => {
-            resolve()
+            const versionCode=getPkgMaifest()?.haimdall?.versionCode
+            //如果有versionCode，需要回退版本
+            if(!isLog&&versionCode){
+                shell.exec(`git checkout ${versionCode}`,{
+                    cwd:`${path.resolve(cwd(),getProjectName())}`
+                },()=>{
+                    resolve()
+                })
+            }else {
+                resolve()
+            }
         })
     })
 }
