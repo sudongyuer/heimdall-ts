@@ -1,6 +1,6 @@
 {
   "name": "@imf/haimdall-js",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "",
   "type": "module",
   "bin": {
@@ -8,6 +8,7 @@
   },
   "main": "index.js",
   "scripts": {
+    "prepublishOnly": "rm -rf ./dist && tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf ./dist && tsc",
     "watch": "watch 'npm run build' ./src"
@@ -23,11 +24,14 @@
     "swagger-typescript-api": "^9.2.0",
     "typescript": "^4.2.4"
   },
+  "publishConfig": {
+    "@imf:registry": "http://maven.jinuo.me/repository/jinuo-npm-inner"
+  },
   "devDependencies": {
     "watch": "^1.0.2",
     "@types/node": "^16.10.5"
   },
   "haimdall":{
-
+    "versionCode": ""
   }
 }
