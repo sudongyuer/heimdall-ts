@@ -23,7 +23,8 @@ async function createApi() {
             input: path.resolve(process.cwd(), `${getProjectName()}`, `${item}`),
             httpClientType: "axios", // or "fetch",
             unwrapResponseData:true,
-            generateUnionEnums:true
+            generateUnionEnums:true,
+            enumNamesAsValues:true
         })
     }
 
@@ -38,7 +39,8 @@ async function createApi() {
             input: path.resolve(process.cwd(), `${getProjectName()}`, `${item}`),
             httpClientType: "axios", // or "fetch",
             unwrapResponseData:true,
-            generateUnionEnums:true
+            generateUnionEnums:true,
+            enumNamesAsValues:true
         })
     }
 
