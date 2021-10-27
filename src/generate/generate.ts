@@ -21,10 +21,11 @@ async function createApi() {
             url: null,
             output: path.resolve(process.cwd(), "./src/api"),
             input: path.resolve(process.cwd(), `${getProjectName()}`, `${item}`),
-            httpClientType: "fetch", // or "fetch"
+            httpClientType: "fetch", // or "fetch",
+            unwrapResponseData:true
         })
     }
-    
+
     //V2
     /* NOTE: all fields are optional expect one of `output`, `url`, `spec` */
     const openApi2Array = getOenAPI2YmlFileName(path.resolve(cwd(), `${getProjectName()}`))
@@ -34,7 +35,8 @@ async function createApi() {
             url: null,
             output: path.resolve(process.cwd(), "./src/api"),
             input: path.resolve(process.cwd(), `${getProjectName()}`, `${item}`),
-            httpClientType: "fetch", // or "fetch"
+            httpClientType: "fetch", // or "fetch",
+            unwrapResponseData:true
         })
     }
 
