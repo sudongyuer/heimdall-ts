@@ -21,7 +21,7 @@ async function createApi() {
             url: null,
             output: path.resolve(process.cwd(), "./src/api"),
             input: path.resolve(process.cwd(), `${getProjectName()}`, `${item}`),
-            httpClientType: "fetch", // or "fetch",
+            httpClientType: "axios", // or "fetch",
             unwrapResponseData:true
         })
     }
@@ -35,7 +35,7 @@ async function createApi() {
             url: null,
             output: path.resolve(process.cwd(), "./src/api"),
             input: path.resolve(process.cwd(), `${getProjectName()}`, `${item}`),
-            httpClientType: "fetch", // or "fetch",
+            httpClientType: "axios", // or "fetch",
             unwrapResponseData:true
         })
     }
