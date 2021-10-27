@@ -22,7 +22,8 @@ async function createApi() {
             output: path.resolve(process.cwd(), "node_modules/@imf/heimdall-ts/api"),
             input: path.resolve(process.cwd(), `${getProjectName()}`, `${item}`),
             httpClientType: "axios", // or "fetch",
-            unwrapResponseData:true
+            unwrapResponseData:true,
+            generateUnionEnums:true
         })
     }
 
@@ -36,7 +37,8 @@ async function createApi() {
             output: path.resolve(process.cwd(), "node_modules/@imf/heimdall-ts/api"),
             input: path.resolve(process.cwd(), `${getProjectName()}`, `${item}`),
             httpClientType: "axios", // or "fetch",
-            unwrapResponseData:true
+            unwrapResponseData:true,
+            generateUnionEnums:true
         })
     }
 
