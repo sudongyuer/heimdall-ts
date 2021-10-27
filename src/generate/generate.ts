@@ -19,7 +19,7 @@ async function createApi() {
         await generateApi({
             name: `${item.replace('.oas3.yml', '')}Api.ts`,
             url: null,
-            output: path.resolve(process.cwd(), "./src/api"),
+            output: path.resolve(process.cwd(), "node_modules/@imf/heimdall-ts/api"),
             input: path.resolve(process.cwd(), `${getProjectName()}`, `${item}`),
             httpClientType: "axios", // or "fetch",
             unwrapResponseData:true
@@ -33,7 +33,7 @@ async function createApi() {
         await generateApi({
             name: `${item.replace('.oas2.yml', '')}Api.ts`,
             url: null,
-            output: path.resolve(process.cwd(), "./src/api"),
+            output: path.resolve(process.cwd(), "node_modules/@imf/heimdall-ts/api"),
             input: path.resolve(process.cwd(), `${getProjectName()}`, `${item}`),
             httpClientType: "axios", // or "fetch",
             unwrapResponseData:true
