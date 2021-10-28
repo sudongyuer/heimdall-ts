@@ -3,7 +3,7 @@ import {cwd} from "process";
 import {createRequire} from "module";
 import {createApi} from '../generate/generate.js'
 import * as path from "path";
-import {getPkgMaifest} from "../utils/file/index.js";
+import {getPkgMaifest,removeDir} from "../utils/file/index.js";
 
 const require = createRequire(import.meta.url);
 let shell = require('shelljs');
@@ -21,6 +21,8 @@ if (options.generate) {
     await gitCloneProject(projectName)
     //2.生成api文件
     await createApi()
+    //3.删除下载的yml所在文件夹
+    await removeDir(path.resolve(cwd(),getProjectName()))
 
 } else if (options.log) {
     const projectName = getProjectName()

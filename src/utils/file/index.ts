@@ -92,6 +92,17 @@ function generateFile(dir) {
     shell.touch(dir)
 }
 
+/**
+ * 同步删除指定文件夹
+ * @param dir
+ */
+function removeDir(dir){
+    return new Promise<void>((resolve, reject)=>{
+        shell.rmSync(dir)
+        resolve()
+    })
+}
+
 
 export {
     getPkgMaifest,
@@ -101,6 +112,7 @@ export {
     generateFile,
     generateDir,
     getOenAPI2YmlFileName,
-    getOenAPI2JsonFileName
+    getOenAPI2JsonFileName,
+    removeDir
 
 }
