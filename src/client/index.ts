@@ -40,12 +40,24 @@ if (options.generate) {
     //1.执行下载文件命令
     await gitCloneProject(projectName, true)
     //2.执行打印日志的命令
-    shell.exec('git log --pretty=" %h %ci %s "', {
-            cwd: `${path.resolve(cwd(), getProjectName())}`
-        }
-    )
+    await showLog()
+    //3.删除下载的文件夹
+    await removeDir(path.resolve(cwd(), getProjectName()))
 }
 
+/**
+ * 打印版本stoplight版本信息
+ */
+function showLog(){
+    return new Promise<void>((resolve, reject)=>{
+        shell.exec('git log --pretty=" %h %ci %s "', {
+                cwd: `${path.resolve(cwd(), getProjectName())}`
+            },()=>{
+            resolve()
+            }
+        )
+    })
+}
 
 /**
  * 初始化命令行，并获取命令参数
