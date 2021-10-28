@@ -1,6 +1,6 @@
-# haimdall-js ✨
+# heimdall-ts ✨
 
-![](./img/craft_client.jpg)
+
 Very simple to help you to generate HTTP request sdk
 
 
@@ -9,7 +9,7 @@ Very simple to help you to generate HTTP request sdk
 Install haimdall-js with npm
 
 ```bash
-  npm install @imf/haimdall-ts -D
+  npm install @imf/heimdall-ts -D
 ```
 
 ## Usage 🍉
