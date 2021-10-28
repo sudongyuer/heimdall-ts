@@ -37,6 +37,15 @@ function writeFile(dir, content) {
     })
 }
 
+
+/**
+ * 获取指定文件夹下的所有文件名
+ * @param dir
+ */
+function getFileName(dir) {
+    return fs.readdirSync(dir)
+}
+
 /**
  * 生成OpenAPi3的文件名数据(只包含oas3的yml文件)
  * @param dir
@@ -116,6 +125,7 @@ export {
     generateDir,
     getOenAPI2YmlFileName,
     getOenAPI2JsonFileName,
-    removeDir
+    removeDir,
+    getFileName
 
 }

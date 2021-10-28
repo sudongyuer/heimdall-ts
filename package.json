@@ -1,12 +1,12 @@
 {
   "name": "@imf/heimdall-ts",
-  "version": "1.1.20",
+  "version": "1.1.21",
   "description": "",
   "type": "module",
   "bin": {
     "heimdall": "bin/heimdall.js"
   },
-  "main": "index.js",
+  "main": "api/index.js",
   "scripts": {
     "prepublishOnly": "rm -rf ./dist && tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
