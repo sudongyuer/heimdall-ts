@@ -12,20 +12,20 @@ const {generateApi} = require('swagger-typescript-api');
  * 创建api文件
  */
  function createApi() {
-     return new Promise<void>((resolve, reject)=>{
+     return new Promise<void>(async (resolve, reject) => {
          //V3
          /* NOTE: all fields are optional expect one of `output`, `url`, `spec` */
          const openApi3Array = getOenAPI3YmlFileName(path.resolve(cwd(), `${getProjectName()}`))
          for (let item of openApi3Array) {
-             generateApi({
+             await generateApi({
                  name: `${item.replace('.oas3.yml', '')}Api.ts`,
                  url: null,
                  output: path.resolve(process.cwd(), "node_modules/@imf/heimdall-ts/api"),
                  input: path.resolve(process.cwd(), `${getProjectName()}`, `${item}`),
                  httpClientType: "axios", // or "fetch",
-                 unwrapResponseData:true,
-                 generateUnionEnums:true,
-                 enumNamesAsValues:true
+                 unwrapResponseData: true,
+                 generateUnionEnums: true,
+                 enumNamesAsValues: true
              })
          }
 
@@ -33,20 +33,22 @@ const {generateApi} = require('swagger-typescript-api');
          /* NOTE: all fields are optional expect one of `output`, `url`, `spec` */
          const openApi2Array = getOenAPI2YmlFileName(path.resolve(cwd(), `${getProjectName()}`))
          for (let item of openApi2Array) {
-             generateApi({
+             await generateApi({
                  name: `${item.replace('.oas2.yml', '')}Api.ts`,
                  url: null,
                  output: path.resolve(process.cwd(), "node_modules/@imf/heimdall-ts/api"),
                  input: path.resolve(process.cwd(), `${getProjectName()}`, `${item}`),
                  httpClientType: "axios", // or "fetch",
-                 unwrapResponseData:true,
-                 generateUnionEnums:true,
-                 enumNamesAsValues:true
+                 unwrapResponseData: true,
+                 generateUnionEnums: true,
+                 enumNamesAsValues: true
              })
          }
-        resolve()
+         if(!openApi3Array&&!openApi2Array){
+             reject('no openApi3 or openApi2 resources to generate ')
+         }
+            resolve()
      })
-
 
 }
 

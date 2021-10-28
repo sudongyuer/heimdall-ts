@@ -10,6 +10,7 @@ import {
     removeDir,
     writeFile
 } from "../utils/file/index.js";
+
 import {transformToCamel} from "../utils/common/index.js";
 
 const require = createRequire(import.meta.url);
@@ -29,6 +30,7 @@ if (options.generate) {
     //2.生成api文件
     //2.1删除之前下载过的API文件
     await removeDir(path.resolve(cwd(), "node_modules/@imf/heimdall-ts/api"))
+
     await createApi()
     //3.生成入口文件
     await generateMain()
