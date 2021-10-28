@@ -1,5 +1,5 @@
 import {createRequire} from "module";
-import {getOenAPI2YmlFileName, getOenAPI3YmlFileName} from '../utils/file/index.js'
+import {getOenAPI2YmlFileName, getOenAPI3YmlFileName, removeDir} from '../utils/file/index.js'
 import {cwd} from "process";
 import {getProjectName} from "../utils/common/index.js";
 
@@ -44,8 +44,9 @@ const {generateApi} = require('swagger-typescript-api');
                  enumNamesAsValues: true
              })
          }
-         if(!openApi3Array&&!openApi2Array){
-             reject('no openApi3 or openApi2 resources to generate ')
+         if(!openApi3Array.length&&!openApi2Array.length){
+             await removeDir(path.resolve(cwd(), getProjectName()))
+             reject('no openApi3 or openApi2 resources to generate !!!!!')
          }
             resolve()
      })
