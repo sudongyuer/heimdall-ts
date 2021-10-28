@@ -98,8 +98,11 @@ function generateFile(dir) {
  */
 function removeDir(dir){
     return new Promise<void>((resolve, reject)=>{
-        fs.rmSync(dir);
-        resolve();
+        shell.exec(`rm rf ${dir}`, {
+            cwd: `${cwd()}`
+        }, () => {
+          resolve()
+        })
     })
 }
 
