@@ -70,7 +70,7 @@ function getCommandOptions(): { generate: boolean, log: string } {
     program.option('-l, --log', 'show stoplight git log ');
     program.addHelpText('after', `
 Example call:
-  $ haimdall -h --help`);
+  $ heimdall -h --help`);
 //解析命令行参数
     program.parse(process.argv);
 
@@ -96,7 +96,7 @@ function gitCloneProject(projectName, isLog = false) {
         shell.exec(`git clone https://sudongyu:YUANCxzeJwiVhzQio18v@git.stoplight.io/floozy/${projectName}.git`, {
             cwd: `${cwd()}`
         }, () => {
-            const versionCode = getPkgMaifest()?.haimdall?.versionCode
+            const versionCode = getPkgMaifest()?.heimdall?.versionCode
             //如果有versionCode，需要回退版本
             if (!isLog && versionCode) {
                 shell.exec(`git checkout ${versionCode}`, {
