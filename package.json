@@ -6,7 +6,7 @@
   "bin": {
     "heimdall": "bin/heimdall.js"
   },
-  "main": "api/index.js",
+  "main": "api/index.ts",
   "scripts": {
     "prepublishOnly": "rm -rf ./dist && tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
