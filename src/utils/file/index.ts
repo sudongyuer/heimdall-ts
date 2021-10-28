@@ -98,7 +98,7 @@ function generateFile(dir) {
  */
 function removeDir(dir){
     return new Promise<void>((resolve, reject)=>{
-        shell.rmSync(dir);
+        fs.rmSync(dir);
         resolve();
     })
 }
