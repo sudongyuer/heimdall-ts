@@ -1,12 +1,12 @@
 # heimdall-ts ✨
 
 
-Very simple to help you to generate HTTP request sdk
+Very simple to help you to generate HTTP request TypeScript sdk
 
 
 ## Installation 🌝
 
-Install haimdall-js with npm
+Install heimdall-ts with npm
 
 ```bash
   npm install @imf/heimdall-ts -D

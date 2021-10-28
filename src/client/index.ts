@@ -6,7 +6,6 @@ import * as path from "path";
 import {
     generateFile,
     getFileName,
-    getOenAPI3YmlFileName,
     getPkgMaifest,
     removeDir,
     writeFile
@@ -28,6 +27,8 @@ if (options.generate) {
     //1.执行下载文件命令
     await gitCloneProject(projectName)
     //2.生成api文件
+    //2.1删除之前下载过的API文件
+    await removeDir(path.resolve(cwd(), "node_modules/@imf/heimdall-ts/api"))
     await createApi()
     //3.生成入口文件
     await generateMain()
