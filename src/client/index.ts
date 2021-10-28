@@ -105,22 +105,20 @@ function generateMain() {
     return new Promise<void>((resolve, reject)=>{
         //获取文件名
         const fileNames = getFileName(path.resolve(cwd(), 'node_modules/@imf/heimdall-ts/api'))
-        //转换文件名
+        //转换文件名 eg:  main.ts -> MainGameApi
         const transformedFileNames = fileNames.map(item => {
             return transformToCamel(item)
         })
         //编写要写如的内容content
         const content = `
-   ${
-            transformedFileNames.map((item, index) => {
-
+        ${transformedFileNames.map((item, index) => {
                 return `import \{Api as ${item}\} from \'\.\/${fileNames[index]}\'\n`
-            })
+            }).join('')
         }
    
    export {
         ${transformedFileNames.map(item => {
-            return `${item}\,\n`
+            return `${item}\n`
         })}
     }
    `

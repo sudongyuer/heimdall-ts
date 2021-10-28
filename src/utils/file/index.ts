@@ -43,7 +43,9 @@ function writeFile(dir, content) {
  * @param dir
  */
 function getFileName(dir) {
-    return fs.readdirSync(dir)
+    return fs.readdirSync(dir).map(item=>{
+        return item.replace(/.[\w]*$/,'')
+    })
 }
 
 /**
