@@ -3,7 +3,15 @@ import {cwd} from "process";
 import {createRequire} from "module";
 import {createApi} from '../generate/generate.js'
 import * as path from "path";
-import {getPkgMaifest} from "../utils/file/index.js";
+import {
+    generateFile,
+    getFileName,
+    getPkgMaifest,
+    removeDir,
+    writeFile
+} from "../utils/file/index.js";
+
+import {transformToCamel} from "../utils/common/index.js";
 
 const require = createRequire(import.meta.url);
 let shell = require('shelljs');
@@ -20,19 +28,38 @@ if (options.generate) {
     //1.执行下载文件命令
     await gitCloneProject(projectName)
     //2.生成api文件
+    //2.1删除之前下载过的API文件
+    await removeDir(path.resolve(cwd(), "node_modules/@imf/heimdall-ts/api"))
+
     await createApi()
+    //3.生成入口文件
+    await generateMain()
+    //4.删除下载的yml所在文件夹
+    await removeDir(path.resolve(cwd(), getProjectName()))
 
 } else if (options.log) {
     const projectName = getProjectName()
     //1.执行下载文件命令
-    await gitCloneProject(projectName,true)
+    await gitCloneProject(projectName, true)
     //2.执行打印日志的命令
-    shell.exec('git log --pretty=" %h %ci %s "', {
-            cwd: `${path.resolve(cwd(),getProjectName())}`
-        }
-    )
+    await showLog()
+    //3.删除下载的文件夹
+    await removeDir(path.resolve(cwd(), getProjectName()))
 }
 
+/**
+ * 打印版本stoplight版本信息
+ */
+function showLog(){
+    return new Promise<void>((resolve, reject)=>{
+        shell.exec('git log --pretty=" %h %ci %s "', {
+                cwd: `${path.resolve(cwd(), getProjectName())}`
+            },()=>{
+            resolve()
+            }
+        )
+    })
+}
 
 /**
  * 初始化命令行，并获取命令参数
@@ -45,7 +72,7 @@ function getCommandOptions(): { generate: boolean, log: string } {
     program.option('-l, --log', 'show stoplight git log ');
     program.addHelpText('after', `
 Example call:
-  $ haimdall -h --help`);
+  $ heimdall -h --help`);
 //解析命令行参数
     program.parse(process.argv);
 
@@ -66,24 +93,58 @@ function getProjectName(): string {
 /**
  * 克隆项目
  */
-function gitCloneProject(projectName,isLog=false) {
+function gitCloneProject(projectName, isLog = false) {
     return new Promise<void>((resolve, reject) => {
         shell.exec(`git clone https://sudongyu:YUANCxzeJwiVhzQio18v@git.stoplight.io/floozy/${projectName}.git`, {
             cwd: `${cwd()}`
         }, () => {
-            const versionCode=getPkgMaifest()?.haimdall?.versionCode
+            const versionCode = getPkgMaifest()?.heimdall?.versionCode
             //如果有versionCode，需要回退版本
-            if(!isLog&&versionCode){
-                shell.exec(`git checkout ${versionCode}`,{
-                    cwd:`${path.resolve(cwd(),getProjectName())}`
-                },()=>{
+            if (!isLog && versionCode) {
+                shell.exec(`git checkout ${versionCode}`, {
+                    cwd: `${path.resolve(cwd(), getProjectName())}`
+                }, () => {
                     resolve()
                 })
-            }else {
+            } else {
                 resolve()
             }
         })
     })
 }
 
+/**
+ * 生成入口文件index.ts
+ */
+function generateMain() {
+    return new Promise<void>((resolve, reject)=>{
+        //获取文件名
+        const fileNames = getFileName(path.resolve(cwd(), 'node_modules/@imf/heimdall-ts/api'))
+        //转换文件名 eg:  main.ts -> MainGameApi
+        const transformedFileNames = fileNames.map(item => {
+            return transformToCamel(item)
+        })
+        //编写要写如的内容content
+        const content = `
+        ${transformedFileNames.map((item, index) => {
+                return `import \{Api as ${item}\} from \'\.\/${fileNames[index]}\'\n`
+            }).join('')
+        }
+   
+   export {
+        ${transformedFileNames.map(item => {
+            return `${item}\n`
+        })}
+    }
+   `
+        //创建index文件
+        generateFile(path.resolve(cwd(),'node_modules/@imf/heimdall-ts/api','index.ts'))
+        //写入文件
+        writeFile(path.resolve(cwd(),'node_modules/@imf/heimdall-ts/api','index.ts'),content).then(()=>{
+            resolve()
+        })
+    })
+
+
+}
 
