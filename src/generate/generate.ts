@@ -26,7 +26,8 @@ const {generateApi} = require('swagger-typescript-api');
                  unwrapResponseData: true,
                  generateUnionEnums: true,
                  enumNamesAsValues: true,
-                 singleHttpClient:true
+                 moduleNameFirstTag: false,
+                 moduleNameIndex:-1
              })
          }
 
@@ -40,10 +41,11 @@ const {generateApi} = require('swagger-typescript-api');
                  output: path.resolve(process.cwd(), "node_modules/@imf/heimdall-ts/api"),
                  input: path.resolve(process.cwd(), `${getProjectName()}`, `${item}`),
                  httpClientType: "axios", // or "fetch",
-                 unwrapResponseData: true,
+                 unwrapResponseData: true,//是否包裹response
                  generateUnionEnums: true,
                  enumNamesAsValues: true,
-                 singleHttpClient:true
+                 moduleNameFirstTag: false,
+                 moduleNameIndex:-1 //模块名分割
              })
          }
          if(!openApi3Array.length&&!openApi2Array.length){
