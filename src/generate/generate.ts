@@ -25,7 +25,8 @@ const {generateApi} = require('swagger-typescript-api');
                  httpClientType: "axios", // or "fetch",
                  unwrapResponseData: true,
                  generateUnionEnums: true,
-                 enumNamesAsValues: true
+                 enumNamesAsValues: true,
+                 singleHttpClient:true
              })
          }
 
@@ -41,7 +42,8 @@ const {generateApi} = require('swagger-typescript-api');
                  httpClientType: "axios", // or "fetch",
                  unwrapResponseData: true,
                  generateUnionEnums: true,
-                 enumNamesAsValues: true
+                 enumNamesAsValues: true,
+                 singleHttpClient:true
              })
          }
          if(!openApi3Array.length&&!openApi2Array.length){
