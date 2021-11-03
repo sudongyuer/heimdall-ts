@@ -1,8 +1,9 @@
 import {Command} from "commander";
 import {cwd} from "process";
 import {createRequire} from "module";
-import {createApi} from '../generate/generate.js'
+import {createApi, createMultiApi} from '../generate/generate.js'
 import * as path from "path";
+
 import {
     generateFile,
     getFileName,
@@ -11,7 +12,7 @@ import {
     writeFile
 } from "../utils/file/index.js";
 
-import {transformToCamel} from "../utils/common/index.js";
+import {object2iterator, transformToCamel} from "../utils/common/index.js";
 
 const require = createRequire(import.meta.url);
 let shell = require('shelljs');
@@ -21,41 +22,54 @@ console.log(cwd())
 
 const options = getCommandOptions()
 
+console.log(options)
 
-//生成API入口
+const pkg = getPkgMaifest()
+
+//默认生成API入口(使用方没有指定repo，默认拉取项目名的仓库)
 if (options.generate) {
-    const projectName = getProjectName()
+
+    let repos = getRepos()
+    //转换为可迭代对象
+    repos=object2iterator(repos)
     //1.执行下载文件命令
-    await gitCloneProject(projectName)
+    await gitCloneProject(repos)
     //2.生成api文件
     //2.1删除之前下载过的API文件
     await removeDir(path.resolve(cwd(), "node_modules/@imf/heimdall-ts/api"))
 
-    await createApi()
+    await createMultiApi(repos)
     //3.生成入口文件
     await generateMain()
     //4.删除下载的yml所在文件夹
-    await removeDir(path.resolve(cwd(), getProjectName()))
+    await removeCacheFile(repos)
 
 } else if (options.log) {
-    const projectName = getProjectName()
+
+    //为对象添加迭代器
+    let repo={
+        [options.log]:''
+    }
+    repo=object2iterator(repo)
+
     //1.执行下载文件命令
-    await gitCloneProject(projectName, true)
+    await gitCloneProject(repo, true)
     //2.执行打印日志的命令
-    await showLog()
+    await showLog(options.log)
     //3.删除下载的文件夹
-    await removeDir(path.resolve(cwd(), getProjectName()))
+    await removeDir(path.resolve(cwd(), options.log))
+
 }
 
 /**
  * 打印版本stoplight版本信息
  */
-function showLog(){
-    return new Promise<void>((resolve, reject)=>{
+function showLog(repo) {
+    return new Promise<void>((resolve, reject) => {
         shell.exec('git log --pretty=" %h %ci %s "', {
-                cwd: `${path.resolve(cwd(), getProjectName())}`
-            },()=>{
-            resolve()
+                cwd: `${path.resolve(cwd(), repo)}`
+            }, () => {
+                resolve()
             }
         )
     })
@@ -69,7 +83,7 @@ function getCommandOptions(): { generate: boolean, log: string } {
     //初始化命令行帮助信息
     const program = new Command();
     program.option('-g, --generate', 'generate API ');
-    program.option('-l, --log', 'show stoplight git log ');
+    program.option('-l, --log <repo>', 'show stoplight git log of repo');
     program.addHelpText('after', `
 Example call:
   $ heimdall -h --help`);
@@ -91,33 +105,49 @@ function getProjectName(): string {
 }
 
 /**
+ * 获取所有repo
+ */
+function getRepos(): string {
+    const pkgMaifest = getPkgMaifest()
+    return pkgMaifest?.heimdall?.repo
+}
+
+/**
  * 克隆项目
  */
-function gitCloneProject(projectName, isLog = false) {
-    return new Promise<void>((resolve, reject) => {
-        shell.exec(`git clone https://sudongyu:YUANCxzeJwiVhzQio18v@git.stoplight.io/floozy/${projectName}.git`, {
-            cwd: `${cwd()}`
-        }, () => {
-            const versionCode = getPkgMaifest()?.heimdall?.versionCode
-            //如果有versionCode，需要回退版本
-            if (!isLog && versionCode) {
-                shell.exec(`git checkout ${versionCode}`, {
-                    cwd: `${path.resolve(cwd(), getProjectName())}`
+function gitCloneProject(repo, isLog = false) {
+    const promiseArray = [];
+    return new Promise<void>((resolveClone, rejectClone) => {
+        for (const [projectName, versionCode] of repo) {
+            promiseArray.push(new Promise<void>((resolve, reject) => {
+                shell.exec(`git clone https://Jude95:7ATCTJ1YsJYj_AHsGhSh@git.stoplight.io/floozy/${projectName}.git`, {
+                    cwd: `${cwd()}`
                 }, () => {
-                    resolve()
+                    //如果有versionCode，需要回退版本
+                    if (!isLog && versionCode && versionCode !== '^') {
+                        shell.exec(`git checkout ${versionCode}`, {
+                            cwd: `${path.resolve(cwd(), projectName)}`
+                        }, () => {
+                            resolve()
+                        })
+                    } else {
+                        resolve()
+                    }
                 })
-            } else {
-                resolve()
-            }
+            }))
+        }
+        Promise.all(promiseArray).then(() => {
+            resolveClone()
         })
     })
+
 }
 
 /**
  * 生成入口文件index.ts
  */
 function generateMain() {
-    return new Promise<void>((resolve, reject)=>{
+    return new Promise<void>((resolve, reject) => {
         //获取文件名
         const fileNames = getFileName(path.resolve(cwd(), 'node_modules/@imf/heimdall-ts/api'))
         //转换文件名 eg:  main.ts -> MainGameApi
@@ -127,8 +157,8 @@ function generateMain() {
         //编写要写如的内容content
         const content = `
         ${transformedFileNames.map((item, index) => {
-                return `import \{Api as ${item}\} from \'\.\/${fileNames[index]}\'\n`
-            }).join('')
+            return `import \{Api as ${item}\} from \'\.\/${fileNames[index]}\'\n`
+        }).join('')
         }
    
    export {
@@ -138,13 +168,28 @@ function generateMain() {
     }
    `
         //创建index文件
-        generateFile(path.resolve(cwd(),'node_modules/@imf/heimdall-ts/api','index.ts'))
+        generateFile(path.resolve(cwd(), 'node_modules/@imf/heimdall-ts/api', 'index.ts'))
         //写入文件
-        writeFile(path.resolve(cwd(),'node_modules/@imf/heimdall-ts/api','index.ts'),content).then(()=>{
+        writeFile(path.resolve(cwd(), 'node_modules/@imf/heimdall-ts/api', 'index.ts'), content).then(() => {
             resolve()
         })
     })
 
+}
+
+/**
+ * 清楚YML/JSON所产生的缓存文件
+ */
+function removeCacheFile(repos){
+    return new Promise<void>((resolve, reject)=>{
+        const promiseArray=[]
+        for (const [repo,versionCode] of repos) {
+            promiseArray.push(removeDir(path.resolve(cwd(),repo)))
+        }
+        Promise.all(promiseArray).then(()=>{
+            resolve()
+        })
+    })
 
 }
 

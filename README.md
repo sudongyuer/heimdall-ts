@@ -35,16 +35,23 @@ just run script `heimdall -g` in script then can help you to generate typeScript
 
 ## config 📖
 
-config is optional,if you want to get the latest code ,
-you do not need this config .
+config is required
 
-if you want to `reset` generate code version,you just need to fill the config in `package.json`
+`repo Parameters`
+
+| Parameter   | Type     | Description                            | value            |
+| :---------- | :------- | :------------------------------------- | :--------------- |
+| `key` | `string` | **Required**  repoName                       | eg: kalista             |
+| `value` | `string` | **Required**   the repo versionCode        | eg: 54ffc83 (^ means latest)         |
 
 `package.json`
 
 ```json
   "heimdall": {
-      "versionCode": "b8fbc83"
+    "repo": {
+        "kalista":"^",
+        "demo":"^"
+    }
   }
 ```
 
@@ -63,7 +70,7 @@ heimdall -g
 
 `check stoplight version`
 ```bash
-heimdall -l
+heimdall -l kalista
 ```
 
 
@@ -75,7 +82,13 @@ heimdall -l
 ```json
 
 "script":{
-  "hemdall": "heimdall -g"
+  "hemdall": "heimdall -g",
+},
+"heimdall": {
+  "repo": {
+    "kalista":"^",
+    "demo":"^"
+  }
 }
 
 ```

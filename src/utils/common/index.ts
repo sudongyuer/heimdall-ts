@@ -28,8 +28,22 @@ function transformToCamel(str:string,isFirtUpperCase=true){
     });
 }
 
+/**
+ * 将{}对象转换为可迭代对象
+ */
+function object2iterator(obj){
+    obj[Symbol.iterator]=function* () {
+        let properties = Object.keys(this);
+        for (let i of properties) {
+            yield [i, this[i]];
+        }
+    }
+    return obj
+}
+
 
 export {
     getProjectName,
-    transformToCamel
+    transformToCamel,
+    object2iterator
 }
