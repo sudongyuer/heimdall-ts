@@ -22,6 +22,8 @@ have fun ^_^
 
 - support rollback version 
 
+- support multi openAPI repository
+
 ## Installation 🌝
 
 Install heimdall-ts with npm
