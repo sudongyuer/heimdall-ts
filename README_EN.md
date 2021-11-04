@@ -1,31 +1,32 @@
 # heimdall-ts ✨
+
 [中文](./README.md) ｜ [English](./README_EN.md)
 
 ![](./img/heimdall.jpg)
 
-非常简单的帮助你生成typeScript api模块 
+Very simple to help you to generate typeScript api module  
 
-(支持 swagger2.0 和 OpenApi 3.0 规范)
+(support swagger2.0 and OpenApi 3.0)
 
-玩得开心 ^_^
+have fun ^_^
 
 ## Feature ❤️
 
-- 只需要执行一行脚本命令就可以自动生成基于TypeScript的API请求模块
+- just need run script then you can get the latest typeScript api module
 
-- 你可以在代码中自定义的你的请求和响应拦截器
+- you can diy request or response interceptor in you code
 
-- 强类型系统可以帮助您轻松编写和智能提示
+- strong type system can help you to code and easily smart tips
 
-- 兼容swagger2.0和OpenApi3.0
+- compatible swagger2.0 and OpenApi3.0
 
-- 支持按需导入，可以帮助您的项目容易摇树
+- support import on demand that can help your project easy to tree shaking
 
-- 支持回滚版本
+- support rollback version 
 
-- 支持多openAPI存储库生成代码
+- support multi openAPI repository
 
-## 安装 🌝
+## Installation 🌝
 
 Install heimdall-ts with npm
 
@@ -34,11 +35,9 @@ Install heimdall-ts with npm
 ```
 
 ## Usage 🍉
+just run script `heimdall -g` in script then can help you to generate typeScript api module code
 
-只要在script中运行脚本 `heimdall -g `就可以帮助你生成TypeScript api模块代码，在自己的api目录中引入API
-模块，进行自定义设置。
-
-生成的API文件都在当前项目 **/node_modules/@imf/heimdall-ts/api** 中。
+All api files are in  **/node_modules/@imf/heimdall-ts/api** 
 
 `api/index.ts`
 
@@ -126,14 +125,14 @@ export default mainApi;
 
 ## config 📖
 
-配置文件是必须的
+config is required
 
 `repo Parameters`
 
 | Parameter   | Type     | Description                            | value            |
 | :---------- | :------- | :------------------------------------- | :--------------- |
-| `key` | `string` | **Required**  仓库名                       | eg: kalista             |
-| `value` | `string` | **Required**   仓库的版本号        | eg: 54ffc83 (^ means latest)         |
+| `key` | `string` | **Required**  repoName                       | eg: kalista             |
+| `value` | `string` | **Required**   the repo versionCode        | eg: 54ffc83 (^ means latest)         |
 
 `package.json`
 
@@ -148,25 +147,25 @@ export default mainApi;
 
 ## Command 🪟
 
-` 获取帮助`
+` get help`
 ```bash
 heimdall -h
 ```
 
-`生成API请求模块代码`
+`generate api module code`
 
 ```bash
 heimdall -g
 ```
 
-`查看相应仓库的版本号`
+`check stoplight version`
 ```bash
 heimdall -l kalista
 ```
 
 
 
-## 试例🐞
+## Example 🐞
 
 `package.json`
 
@@ -184,14 +183,14 @@ heimdall -l kalista
 
 ```
 
-## 问题 ❓
+## Q&A ❓
 
-如果您有任何问题，您可以通过以下方式与我联系
+If you have any question,you can contact me in following ways
 
 - Email : 976499226@qq.com
 
 
-## 作者 👨‍💻
+## Authors 👨‍💻
 
 - [@sudongyuer](https://github.com/sudongyuer)
 
