@@ -1,7 +1,11 @@
 # heimdall-ts ✨
 [中文](./README.md) ｜ [English](./README_EN.md)
 
-![](./img/heimdall.jpg)
+<p align="center">
+<a href="https://github.com/HaiyaoTec/heimdall-ts" target="_blank">
+<img src="https://static01.imgkr.com/temp/11972f34addd478ca4cc7a62fd7baf5f.jpg" alt="heimdall-ts" height="250" width="250"/>
+</a>
+</p>
 
 非常简单的帮助你生成typeScript api模块
 
