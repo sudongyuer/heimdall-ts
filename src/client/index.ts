@@ -120,7 +120,7 @@ function gitCloneProject(repo, isLog = false) {
     return new Promise<void>((resolveClone, rejectClone) => {
         for (const [projectName, versionCode] of repo) {
             promiseArray.push(new Promise<void>((resolve, reject) => {
-                shell.exec(`git clone https://Jude95:7ATCTJ1YsJYj_AHsGhSh@git.stoplight.io/floozy/${projectName}.git`, {
+                shell.exec(`${getPkgMaifest()?.heimdall?.stopLightGitURL}${projectName}.git`, {
                     cwd: `${cwd()}`
                 }, (err) => {
                     if(err){reject('git clone failed')}
