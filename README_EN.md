@@ -4,7 +4,7 @@
 
 ![](./img/heimdall.jpg)
 
-Very simple to help you to generate typeScript api module  
+Very simple to help you to generate typeScript api module
 
 (support swagger2.0 and OpenApi 3.0)
 
@@ -22,7 +22,7 @@ have fun ^_^
 
 - support import on demand that can help your project easy to tree shaking
 
-- support rollback version 
+- support rollback version
 
 - support multi openAPI repository
 
@@ -37,7 +37,7 @@ Install heimdall-ts with npm
 ## Usage 🍉
 just run script `heimdall -g` in script then can help you to generate typeScript api module code
 
-All api files are in  **/node_modules/@imf/heimdall-ts/api** 
+All api files are in  **/node_modules/@imf/heimdall-ts/api**
 
 `api/index.ts`
 
@@ -127,6 +127,12 @@ export default mainApi;
 
 config is required
 
+`stopLightGitURL`
+
+| Parameter   | Type     | Description                            | value            |
+| :---------- | :------- | :------------------------------------- | :--------------- |
+| `value` | `string` | **Required**   stopLight docs git location        | eg: https://xxxxxxxx@git.stoplight.io/xxxxxx/
+
 `repo Parameters`
 
 | Parameter   | Type     | Description                            | value            |
@@ -139,6 +145,7 @@ config is required
 ```json
   "heimdall": {
     "repo": {
+        "stopLightGitURL":"https://xxxxxxxx@git.stoplight.io/xxxxxx/",
         "kalista":"^",
         "demo":"^"
     }
@@ -175,6 +182,7 @@ heimdall -l kalista
   "hemdall": "heimdall -g",
 },
 "heimdall": {
+"stopLightGitURL":"https://xxxxxxxx@git.stoplight.io/xxxxxx/",
   "repo": {
     "kalista":"^",
     "demo":"^"
