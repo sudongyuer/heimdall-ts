@@ -144,8 +144,8 @@ config is required
 
 ```json
   "heimdall": {
+    "stopLightGitURL":"https://xxxxxxxx@git.stoplight.io/xxxxxx/",
     "repo": {
-        "stopLightGitURL":"https://xxxxxxxx@git.stoplight.io/xxxxxx/",
         "kalista":"^",
         "demo":"^"
     }
