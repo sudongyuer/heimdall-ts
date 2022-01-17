@@ -122,7 +122,8 @@ function gitCloneProject(repo, isLog = false) {
             promiseArray.push(new Promise<void>((resolve, reject) => {
                 shell.exec(`git clone https://Jude95:7ATCTJ1YsJYj_AHsGhSh@git.stoplight.io/floozy/${projectName}.git`, {
                     cwd: `${cwd()}`
-                }, () => {
+                }, (err) => {
+                    if(err){reject('git clone failed')}
                     //如果有versionCode，需要回退版本
                     if (!isLog && versionCode && versionCode !== '^') {
                         shell.exec(`git checkout ${versionCode}`, {
