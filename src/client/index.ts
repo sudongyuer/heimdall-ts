@@ -48,7 +48,7 @@ if (options.generate) {
 
     //为对象添加迭代器
     let repo={
-        [options.log]:''
+        [options.log]:getPkgMaifest().heimdall.repo[options.log]
     }
     repo=object2iterator(repo)
 
@@ -118,9 +118,9 @@ function getRepos(): string {
 function gitCloneProject(repo, isLog = false) {
     const promiseArray = [];
     return new Promise<void>((resolveClone, rejectClone) => {
-        for (const [projectName, versionCode] of repo) {
+        for (const [projectName, {git:gitRepo,version:versionCode}] of repo) {
             promiseArray.push(new Promise<void>((resolve, reject) => {
-                shell.exec(`git clone https://Jude95:7ATCTJ1YsJYj_AHsGhSh@git.stoplight.io/floozy/${projectName}.git`, {
+                shell.exec(`git clone ${gitRepo}`, {
                     cwd: `${cwd()}`
                 }, (err) => {
                     if(err){reject('git clone failed')}
