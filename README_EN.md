@@ -1,8 +1,12 @@
 # heimdall-ts ✨
 
-[中文](./README.md) ｜ [English](./README_EN.md)
+[中文](/README.md) ｜ [English](/README_EN.md)
 
-![](./img/heimdall.jpg)
+<p align="center">
+<a href="https://github.com/HaiyaoTec/heimdall-ts" target="_blank">
+<img src="https://static01.imgkr.com/temp/11972f34addd478ca4cc7a62fd7baf5f.jpg" alt="heimdall-ts" height="250" width="250"/>
+</a>
+</p>
 
 Very simple to help you to generate typeScript api module  
 
@@ -31,13 +35,13 @@ have fun ^_^
 Install heimdall-ts with npm
 
 ```bash
-  npm install @imf/heimdall-ts -D
+  npm install @haiyaotec/heimdall-ts -D
 ```
 
 ## Usage 🍉
 just run script `heimdall -g` in script then can help you to generate typeScript api module code
 
-All api files are in  **/node_modules/@imf/heimdall-ts/api** 
+All api files are in  **/node_modules/@haiyaotec/heimdall-ts/api** 
 
 `api/index.ts`
 
@@ -55,7 +59,7 @@ import {
     HeraclesWithdrawApi,
     HeraclesPayApi,
     HeraclesAdApi as AdApi,
-} from '@imf/heimdall-ts';
+} from '@haiyaotec/heimdall-ts';
 
 import {AxiosRequestConfig, AxiosResponse} from 'axios';
 

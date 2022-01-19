@@ -1,7 +1,11 @@
 # heimdall-ts ✨
-[中文](./README.md) ｜ [English](./README_EN.md)
+[中文](/README.md) ｜ [English](/README_EN.md)
 
-![](./img/heimdall.jpg)
+<p align="center">
+<a href="https://github.com/HaiyaoTec/heimdall-ts" target="_blank">
+<img src="https://static01.imgkr.com/temp/11972f34addd478ca4cc7a62fd7baf5f.jpg" alt="heimdall-ts" height="250" width="250"/>
+</a>
+</p>
 
 非常简单的帮助你生成typeScript api模块 
 
@@ -32,7 +36,7 @@
 Install heimdall-ts with npm
 
 ```bash
-  npm install @imf/heimdall-ts -D
+  npm install @haiyaotec/heimdall-ts -D
 ```
 
 ## Usage 🍉
@@ -40,7 +44,7 @@ Install heimdall-ts with npm
 只要在script中运行脚本 `heimdall -g `就可以帮助你生成TypeScript api模块代码，在自己的api目录中引入API
 模块，进行自定义设置。
 
-生成的API文件都在当前项目 **/node_modules/@imf/heimdall-ts/api** 中。
+生成的API文件都在当前项目 **/node_modules/@haiyaotec/heimdall-ts/api** 中。
 
 `api/index.ts`
 
@@ -58,7 +62,7 @@ import {
     HeraclesWithdrawApi,
     HeraclesPayApi,
     HeraclesAdApi as AdApi,
-} from '@imf/heimdall-ts';
+} from '@haiyaotec/heimdall-ts';
 
 import {AxiosRequestConfig, AxiosResponse} from 'axios';
 
