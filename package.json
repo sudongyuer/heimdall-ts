@@ -1,11 +1,12 @@
 {
-  "name": "@imf/heimdall-ts",
-  "version": "2.1.0-alpha",
+  "name": "@haiyaotec/heimdall-ts",
+  "version": "2.1.1-alpha",
   "description": "",
   "type": "module",
   "bin": {
     "heimdall": "bin/heimdall.js"
   },
+  "homepage": "https://github.com/HaiyaoTec/heimdall-ts",
   "main": "api/index.ts",
   "scripts": {
     "prepublishOnly": "rm -rf ./dist && tsc",
