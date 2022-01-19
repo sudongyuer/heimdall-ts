@@ -1,6 +1,6 @@
 {
   "name": "@haiyaotec/heimdall-ts",
-  "version": "2.1.1-alpha",
+  "version": "2.1.2-alpha",
   "description": "",
   "type": "module",
   "bin": {
