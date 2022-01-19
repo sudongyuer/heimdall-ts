@@ -1,6 +1,6 @@
 # heimdall-ts ✨
 
-[中文](./README.md) ｜ [English](./README_EN.md)
+[中文](/README.md) ｜ [English](/README_EN.md)
 
 <p align="center">
 <a href="https://github.com/HaiyaoTec/heimdall-ts" target="_blank">
@@ -8,7 +8,7 @@
 </a>
 </p>
 
-Very simple to help you to generate typeScript api module
+Very simple to help you to generate typeScript api module  
 
 (support swagger2.0 and OpenApi 3.0)
 
@@ -26,7 +26,7 @@ have fun ^_^
 
 - support import on demand that can help your project easy to tree shaking
 
-- support rollback version
+- support rollback version 
 
 - support multi openAPI repository
 
@@ -35,13 +35,13 @@ have fun ^_^
 Install heimdall-ts with npm
 
 ```bash
-  npm install @imf/heimdall-ts -D
+  npm install @haiyaotec/heimdall-ts -D
 ```
 
 ## Usage 🍉
 just run script `heimdall -g` in script then can help you to generate typeScript api module code
 
-All api files are in  **/node_modules/@imf/heimdall-ts/api**
+All api files are in  **/node_modules/@imf/heimdall-ts/api** 
 
 `api/index.ts`
 
@@ -59,7 +59,7 @@ import {
     HeraclesWithdrawApi,
     HeraclesPayApi,
     HeraclesAdApi as AdApi,
-} from '@imf/heimdall-ts';
+} from '@haiyaotec/heimdall-ts';
 
 import {AxiosRequestConfig, AxiosResponse} from 'axios';
 
@@ -131,12 +131,6 @@ export default mainApi;
 
 config is required
 
-`stopLightGitURL`
-
-| Parameter   | Type     | Description                            | value            |
-| :---------- | :------- | :------------------------------------- | :--------------- |
-| `value` | `string` | **Required**   stopLight docs git location        | eg: https://xxxxxxxx@git.stoplight.io/xxxxxx/
-
 `repo Parameters`
 
 | Parameter   | Type     | Description                            | value            |
@@ -155,7 +149,6 @@ config is required
 
 ```json
   "heimdall": {
-    "stopLightGitURL":"https://xxxxxxxx@git.stoplight.io/xxxxxx/",
     "repo": {
         "abc": {
             "git": "https://gitee.com/xxx/abc.git",
