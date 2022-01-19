@@ -7,7 +7,7 @@
 </a>
 </p>
 
-非常简单的帮助你生成typeScript api模块 
+非常简单的帮助你生成typeScript api模块
 
 (支持 swagger2.0 和 OpenApi 3.0 规范)
 
@@ -134,6 +134,13 @@ export default mainApi;
 
 配置文件是必须的
 
+`stopLightGitURL`
+
+| Parameter   | Type     | Description                            | value            |
+| :---------- | :------- | :------------------------------------- | :--------------- |
+| `value` | `string` | **Required**   stopLight文档git地址        | eg: https://xxxxxxxx@git.stoplight.io/xxxxxx/
+
+
 `repo Parameters`
 
 | Parameter   | Type     | Description                            | value            |
@@ -154,6 +161,7 @@ export default mainApi;
 
 ```json
   "heimdall": {
+   "stopLightGitURL":"https://xxxxxxxx@git.stoplight.io/xxxxxx/",
     "repo": {
         "abc": {
             "git": "https://gitee.com/xxx/abc.git",
