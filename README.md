@@ -1,9 +1,13 @@
 # heimdall-ts ✨
 [中文](./README.md) ｜ [English](./README_EN.md)
 
-![](./img/heimdall.jpg)
+<p align="center">
+<a href="https://github.com/HaiyaoTec/heimdall-ts" target="_blank">
+<img src="https://static01.imgkr.com/temp/11972f34addd478ca4cc7a62fd7baf5f.jpg" alt="heimdall-ts" height="250" width="250"/>
+</a>
+</p>
 
-非常简单的帮助你生成typeScript api模块 
+非常简单的帮助你生成typeScript api模块
 
 (支持 swagger2.0 和 OpenApi 3.0 规范)
 
@@ -130,6 +134,13 @@ export default mainApi;
 
 配置文件是必须的
 
+`stopLightGitURL`
+
+| Parameter   | Type     | Description                            | value            |
+| :---------- | :------- | :------------------------------------- | :--------------- |
+| `value` | `string` | **Required**   stopLight文档git地址        | eg: https://xxxxxxxx@git.stoplight.io/xxxxxx/
+
+
 `repo Parameters`
 
 | Parameter   | Type     | Description                            | value            |
@@ -150,6 +161,7 @@ export default mainApi;
 
 ```json
   "heimdall": {
+   "stopLightGitURL":"https://xxxxxxxx@git.stoplight.io/xxxxxx/",
     "repo": {
         "abc": {
             "git": "https://gitee.com/xxx/abc.git",
