@@ -141,8 +141,15 @@ config is required
 
 | Parameter   | Type     | Description                            | value            |
 | :---------- | :------- | :------------------------------------- | :--------------- |
-| `key` | `string` | **Required**  repoName                       | eg: kalista             |
-| `value` | `string` | **Required**   the repo versionCode        | eg: 54ffc83 (^ means latest)         |
+| `reponame` | `string` | **Required**  repo name(This must be the same as the Git address)                       | eg: abc             |
+| `repoConfig` | `json` | **Required**   repo details        | eg: {"git": "https://gitee.com/xxx/abc.git","version": "^"}      |
+
+`repoConfig Parameters`
+
+| Parameter   | Type     | Description                            | value            |
+| :---------- | :------- | :------------------------------------- | :--------------- |
+| `git` | `string` | **Required**  repo git address (ssh or https)                       | eg: https://gitee.com/xxx/abc.git             |
+| `version` | `string` | **Required**   repo version code(^means latest)        | eg: ^ or 6a7082d   |
 
 `package.json`
 
@@ -150,8 +157,14 @@ config is required
   "heimdall": {
     "stopLightGitURL":"https://xxxxxxxx@git.stoplight.io/xxxxxx/",
     "repo": {
-        "kalista":"^",
-        "demo":"^"
+        "abc": {
+            "git": "https://gitee.com/xxx/abc.git",
+            "version": "^"
+        },
+        "demo-api": {
+            "git": "git@gitee.com:xxx/demo-api.git",
+            "version": "^"
+        }
     }
   }
 ```
@@ -181,18 +194,18 @@ heimdall -l kalista
 `package.json`
 
 ```json
-
-"script":{
-  "hemdall": "heimdall -g",
-},
-"heimdall": {
-"stopLightGitURL":"https://xxxxxxxx@git.stoplight.io/xxxxxx/",
-  "repo": {
-    "kalista":"^",
-    "demo":"^"
+  "heimdall": {
+    "repo": {
+        "abc": {
+            "git": "https://gitee.com/xxx/abc.git",
+            "version": "^"
+        },
+        "demo-api": {
+            "git": "git@gitee.com:xxx/demo-api.git",
+            "version": "^"
+        }
+    }
   }
-}
-
 ```
 
 ## Q&A ❓

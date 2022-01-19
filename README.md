@@ -23,6 +23,8 @@
 
 - 兼容swagger2.0和OpenApi3.0
 
+- 支持json、yml、yaml格式
+
 - 支持按需导入，可以帮助您的项目容易摇树
 
 - 支持回滚版本
@@ -143,8 +145,17 @@ export default mainApi;
 
 | Parameter   | Type     | Description                            | value            |
 | :---------- | :------- | :------------------------------------- | :--------------- |
-| `key` | `string` | **Required**  仓库名                       | eg: kalista             |
-| `value` | `string` | **Required**   仓库的版本号        | eg: 54ffc83 (^ means latest)         |
+| `reponame` | `string` | **Required**  仓库名(需要和git地址一致)                       | eg: kalista             |
+| `repoConfig` | `json` | **Required**   仓库的详细信息        | eg: {"git": "https://gitee.com/xxx/abc.git","version": "^"}      |
+
+`repoConfig Parameters`
+
+| Parameter   | Type     | Description                            | value            |
+| :---------- | :------- | :------------------------------------- | :--------------- |
+| `git` | `string` | **Required**  仓库地址ssh or https                       | eg: https://gitee.com/xxx/abc.git             |
+| `version` | `string` | **Required**   仓库的版本号(^代表最新)        | eg: ^ or 6a7082d   |
+
+
 
 `package.json`
 
@@ -152,8 +163,14 @@ export default mainApi;
   "heimdall": {
    "stopLightGitURL":"https://xxxxxxxx@git.stoplight.io/xxxxxx/",
     "repo": {
-        "kalista":"^",
-        "demo":"^"
+        "abc": {
+            "git": "https://gitee.com/xxx/abc.git",
+            "version": "^"
+        },
+        "demo-api": {
+            "git": "git@gitee.com:xxx/demo-api.git",
+            "version": "^"
+        }
     }
   }
 ```
@@ -173,7 +190,7 @@ heimdall -g
 
 `查看相应仓库的版本号`
 ```bash
-heimdall -l kalista
+heimdall -l <repoName>
 ```
 
 
@@ -183,19 +200,19 @@ heimdall -l kalista
 `package.json`
 
 ```json
-
-"script":{
-  "hemdall": "heimdall -g",
-},
-"heimdall": {
-  "stopLightGitURL":"https://xxxxxxxx@git.stoplight.io/xxxxxx/",
-  "repo": {
-    "kalista":"^",
-    "demo":"^"
+  "heimdall": {
+    "repo": {
+        "abc": {
+            "git": "https://gitee.com/xxx/abc.git",
+            "version": "^"
+        },
+        "demo-api": {
+            "git": "git@gitee.com:xxx/demo-api.git",
+            "version": "^"
+        }
+    }
   }
-}
-
-```
+ ```
 
 ## 问题 ❓
 
