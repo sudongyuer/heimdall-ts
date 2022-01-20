@@ -179,7 +179,7 @@ function generateMain() {
 }
 
 /**
- * 清楚YML/JSON所产生的缓存文件
+ * 清除YML/JSON所产生的缓存文件
  */
 function removeCacheFile(repos){
     return new Promise<void>((resolve, reject)=>{
