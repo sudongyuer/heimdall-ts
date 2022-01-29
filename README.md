@@ -134,12 +134,6 @@ export default mainApi;
 
 配置文件是必须的
 
-`stopLightGitURL`
-
-| Parameter   | Type     | Description                            | value            |
-| :---------- | :------- | :------------------------------------- | :--------------- |
-| `value` | `string` | **Required**   stopLight文档git地址        | eg: https://xxxxxxxx@git.stoplight.io/xxxxxx/
-
 
 `repo Parameters`
 
@@ -161,7 +155,6 @@ export default mainApi;
 
 ```json
   "heimdall": {
-   "stopLightGitURL":"https://xxxxxxxx@git.stoplight.io/xxxxxx/",
     "repo": {
         "abc": {
             "git": "https://gitee.com/xxx/abc.git",
