@@ -1,4 +1,9 @@
 import {getPkgMaifest} from "../file/index.js";
+import {createRequire} from "module";
+import * as fs from "fs";
+
+const require = createRequire(import.meta.url);
+const yaml = require('js-yaml');
 /**
  * 获取项目名
  */
@@ -41,8 +46,32 @@ function object2iterator(obj){
     return obj
 }
 
+/**
+ * 获取特定yml文件转换之后的json文件
+ * @param ymlDir
+ */
+function getJsonFromYmlDir(ymlDir) {
+    // Get document, or throw exception on error
+    try {
+        return yaml.load(fs.readFileSync(ymlDir, 'utf8'))
+    }
+    catch (e) {
+        console.log(e);
+    }
+}
+/**
+ * 检查Yml文件是否含有相应的字段和属性值
+ * @param jsonObj json对象
+ * @param key 需要检查的key
+ * @param value 需要检查key所对应的value
+ */
+function checkJsonHasSpecificField(jsonObj, key, value) {
+    return jsonObj.hasOwnProperty(key) && (jsonObj[key].trim() === value);
+}
 
 export {
+    getJsonFromYmlDir,
+    checkJsonHasSpecificField,
     getProjectName,
     transformToCamel,
     object2iterator

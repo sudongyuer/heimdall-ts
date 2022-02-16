@@ -2,6 +2,7 @@ import * as path from "path";
 import {cwd} from "process";
 import {createRequire} from "module";
 import * as fs from "fs";
+import {checkJsonHasSpecificField, getJsonFromYmlDir} from "../common/index.js";
 
 const require = createRequire(import.meta.url);
 const makeDir = require('make-dir');
@@ -45,6 +46,25 @@ function writeFile(dir, content) {
 function getFileName(dir) {
     return fs.readdirSync(dir).map(item=>{
         return item.replace(/.[\w]*$/,'')
+    })
+}
+
+
+/**
+ * 获取OpenApi文件名数组
+ * @param dir
+ */
+function getOpenAPIFileName(dir){
+    return fs.readdirSync(path.resolve(cwd(), dir)).filter(item => {
+        if (item.endsWith('json') || item.endsWith('yml') || item.endsWith('yaml')) {
+            const jsonFromYmlDir = getJsonFromYmlDir(path.resolve(cwd(), dir, item))
+            const isOpenAPI3 = checkJsonHasSpecificField(jsonFromYmlDir, 'openapi', '3.0.0')
+            const isOpenAPI2 = checkJsonHasSpecificField(jsonFromYmlDir, 'swagger', '2.0')
+            return isOpenAPI3 || isOpenAPI2;
+        } else {
+            console.log(`${item} file format error,skip generate`)
+            return false
+        }
     })
 }
 
@@ -119,6 +139,7 @@ function removeDir(dir){
 
 
 export {
+    getOpenAPIFileName,
     getPkgMaifest,
     writeFile,
     getOenAPI3YmlFileName,
