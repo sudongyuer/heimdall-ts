@@ -5,7 +5,10 @@
     "sourceMap": true,
     "rootDir": "src",
     "moduleResolution": "Node",
-    "outDir": "dist"
+    "outDir": "dist",
+    "lib": [
+      "es5", "es6", "dom", "dom.iterable"
+    ]
   },
     "include": [
         "src/**/*"

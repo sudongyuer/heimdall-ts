@@ -9,19 +9,22 @@
   "main": "api/index.ts",
   "scripts": {
     "prepublishOnly": "rm -rf ./dist && tsc",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build": "rm -rf ./dist && tsc",
     "watch": "watch 'npm run build' ./src"
   },
   "author": "sudongyu",
   "license": "ISC",
   "dependencies": {
+    "@imf/asgard-client": "^2.0.0",
+    "@types/fs-extra": "^9.0.13",
     "axios": "^0.24.0",
     "commander": "^8.2.0",
+    "fs-extra": "^10.0.0",
     "js-yaml": "^4.1.0",
     "make-dir": "^3.1.0",
     "openapi-ts-client-gen": "^1.3.1",
-    "shelljs": "^0.8.4",
+    "shelljs": "^0.8.5",
     "swagger-typescript-api": "^9.2.0",
     "typescript": "^4.2.4"
   },
@@ -29,7 +32,13 @@
     "@imf:registry": "http://maven.jinuo.me/repository/jinuo-npm-inner"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
     "@types/node": "^16.10.5",
+    "babel-jest": "^27.5.1",
+    "jest": "^27.5.1",
+    "openapi-typescript": "^5.2.0",
     "watch": "^1.0.2"
   },
   "heimdall": {
