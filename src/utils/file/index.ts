@@ -3,6 +3,8 @@ import {cwd} from "process";
 import {createRequire} from "module";
 import * as fs from "fs";
 import {checkJsonHasSpecificField, getJsonFromYmlDir} from "../common/index.js";
+import * as fes from 'fs-extra'
+import * as os from "os";
 
 const require = createRequire(import.meta.url);
 const makeDir = require('make-dir');
@@ -137,6 +139,14 @@ function removeDir(dir){
     })
 }
 
+//TODO 像指定文件追加内容
+function patchStringToFile(path,content){
+  return new Promise<void>((resolve, reject) => {
+      fs.appendFileSync(path, content,'utf-8')
+      resolve()
+  })
+}
+
 
 export {
     getOpenAPIFileName,
@@ -149,6 +159,7 @@ export {
     getOenAPI2YmlFileName,
     getOenAPI2JsonFileName,
     removeDir,
-    getFileName
+    getFileName,
+    patchStringToFile
 
 }
