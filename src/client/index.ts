@@ -14,6 +14,7 @@ import {
 } from "../utils/file/index.js";
 
 import {object2iterator, transformToCamel} from "../utils/common/index.js";
+import {generateType, repo, repos} from "../types";
 
 //自定义console.log 方便打印追踪
 // const originConsoleLog = console.log
@@ -37,7 +38,7 @@ const pkg = getPkgMaifest()
 //默认生成API入口(使用方没有指定repo，默认拉取项目名的仓库)
 if (options.generate) {
   //获取所有项目
-  let repos= getRepos()
+  let repos: Record<string, repo> = getRepos()
   //转换为可迭代对象
   repos = object2iterator(repos)
   //http repos
@@ -45,8 +46,7 @@ if (options.generate) {
   //asgard repos
   let asgardRepos = null
   //过滤不同类型的repo
-  // @ts-ignore
-  for (const [repoName, rep] of repos) {
+  for (const [repoName, rep] of repos as repos) {
     if (!rep.type) {
       Promise.reject('no type ,please check~')
     } else {
