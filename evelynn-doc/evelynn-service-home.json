@@ -1,0 +1,809 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "evelynn-service-home",
+    "description": "",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/",
+      "description": "/home"
+    }
+  ],
+  "paths": {
+    "/loading/gameList": {
+      "get": {
+        "summary": "加载游戏列表",
+        "operationId": "loadingGameList",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Game"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "user_token": []
+          }
+        ],
+        "description": "",
+        "tags": [
+          "game"
+        ]
+      }
+    },
+    "/loading/level": {
+      "get": {
+        "summary": "加载用户等级",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Level"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "loadingLevel",
+        "description": "",
+        "security": [
+          {
+            "user_token": []
+          }
+        ],
+        "parameters": [],
+        "tags": [
+          "level"
+        ]
+      }
+    },
+    "/loading/rouletteCounter": {
+      "get": {
+        "summary": "加载用户轮盘计数器",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RouletteCounter"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "loadingRouletteCounter",
+        "description": "",
+        "parameters": [],
+        "security": [
+          {
+            "user_token": []
+          }
+        ],
+        "tags": [
+          "roulette"
+        ]
+      },
+      "parameters": []
+    },
+    "/roulette/collect": {
+      "get": {
+        "summary": "开始收集",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CollectResult"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "rouletteCollect",
+        "description": "",
+        "security": [
+          {
+            "user_token": []
+          }
+        ],
+        "parameters": [],
+        "tags": [
+          "roulette"
+        ]
+      },
+      "parameters": []
+    },
+    "/loading/freeRoulette": {
+      "get": {
+        "summary": "加载免费轮盘",
+        "operationId": "loadingFreeRoulette",
+        "description": "",
+        "security": [
+          {
+            "user_token": []
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Prize"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "roulette"
+        ]
+      }
+    },
+    "/loading/piggyBank": {
+      "get": {
+        "summary": "加载小猪存钱罐",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiggyBank"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "loadingPiggyBank",
+        "security": [
+          {
+            "user_token": []
+          }
+        ],
+        "parameters": [],
+        "tags": [
+          "piggyBank"
+        ]
+      }
+    },
+    "/roulette/freePrizeLuckyDraw": {
+      "get": {
+        "summary": "免费转盘抽奖",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Prize"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "rouletteFreePrizeLuckyDraw",
+        "description": "",
+        "security": [
+          {
+            "user_token": []
+          }
+        ],
+        "parameters": [],
+        "tags": [
+          "roulette"
+        ]
+      },
+      "parameters": []
+    },
+    "/loading/payRoulette": {
+      "get": {
+        "summary": "加载付费轮盘",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Prize"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "loadingPayRoulette",
+        "parameters": [],
+        "security": [
+          {
+            "user_token": []
+          }
+        ],
+        "tags": [
+          "roulette"
+        ]
+      }
+    },
+    "/temp/setBalance": {
+      "get": {
+        "summary": "设置成指定金币",
+        "tags": [
+          "test"
+        ],
+        "responses": {},
+        "operationId": "tempSetBalance",
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetBalance"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loading/userInfo": {
+      "get": {
+        "summary": "加载用户个人信息",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserInfo"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "loadingUserInfo",
+        "description": "",
+        "security": [
+          {
+            "user_token": []
+          }
+        ],
+        "tags": [
+          "user2"
+        ]
+      }
+    },
+    "/loading/userBalance": {
+      "get": {
+        "summary": "加载用户余额",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Balance"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "loadingUserBalance",
+        "description": "",
+        "security": [
+          {
+            "user_token": []
+          }
+        ],
+        "tags": [
+          "pay"
+        ]
+      },
+      "parameters": []
+    },
+    "/loading/oftenPlayGame": {
+      "get": {
+        "summary": "获取用户常玩游戏",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Game"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "loadingOftenPlayGame",
+        "description": "",
+        "security": [
+          {
+            "user_token": []
+          }
+        ],
+        "tags": [
+          "game"
+        ]
+      }
+    },
+    "/time/synchronous": {
+      "get": {
+        "summary": "同步服务器时间",
+        "tags": [
+          "home"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Time"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "timeSynchronous",
+        "security": [
+          {
+            "user_token": []
+          }
+        ],
+        "description": ""
+      }
+    },
+    "/loading/treasureChest": {
+      "get": {
+        "summary": "加载用户所有已获得的宝箱",
+        "tags": [
+          "treasureChest"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TreasureChest"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "loadingTreasureChest",
+        "description": "",
+        "security": [
+          {
+            "user_token": []
+          }
+        ],
+        "x-internal": false
+      }
+    },
+    "/treasureChest/acceptOrPass": {
+      "parameters": [],
+      "post": {
+        "summary": "领取或丢弃宝箱",
+        "operationId": "treasureChestAcceptOrPass",
+        "description": "",
+        "tags": [
+          "treasureChest"
+        ],
+        "security": [
+          {
+            "user_token": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AcceptOrPass"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/treasureChest/countdown": {
+      "parameters": [],
+      "post": {
+        "summary": "开启宝箱倒计时",
+        "operationId": "treasureChestCountdown",
+        "tags": [
+          "treasureChest"
+        ],
+        "security": [
+          {
+            "user_token": []
+          }
+        ],
+        "description": "",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TreasureChestId"
+              }
+            }
+          },
+          "description": ""
+        }
+      }
+    },
+    "/treasureChest/open": {
+      "get": {
+        "summary": "开启宝箱",
+        "tags": [
+          "treasureChest"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TreasureChestPrize"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "treasureChestOpen",
+        "description": "",
+        "security": [
+          {
+            "user_token": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TreasureChestId"
+              }
+            }
+          },
+          "description": ""
+        }
+      },
+      "parameters": []
+    },
+    "/treasureChest/speedUp": {
+      "get": {
+        "summary": "宝箱加速",
+        "tags": [
+          "treasureChest"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TreasureChestPrize"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "treasureChestSpeedUp",
+        "security": [
+          {
+            "user_token": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TreasureChestId"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Game": {
+        "title": "Game",
+        "type": "object",
+        "description": "",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "state": {
+            "type": "integer",
+            "description": "状态"
+          },
+          "typeList": {
+            "type": "string",
+            "description": "分类"
+          },
+          "tagList": {
+            "type": "string",
+            "description": "标签列表"
+          },
+          "propertySize": {
+            "type": "integer",
+            "description": "尺寸"
+          },
+          "type": {
+            "type": "integer",
+            "description": "游戏类型 0 普通游戏 1特殊游戏(比如活动类)"
+          }
+        }
+      },
+      "Level": {
+        "title": "Level",
+        "type": "object",
+        "description": "",
+        "properties": {
+          "experienceLevel": {
+            "type": "integer"
+          },
+          "experienceValue": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "vipLevel": {
+            "type": "integer"
+          },
+          "vipGrowthValue": {
+            "type": "integer"
+          },
+          "crrentExperienceValue": {
+            "type": "integer",
+            "format": "int64",
+            "description": "当前等级已达到的经验值"
+          },
+          "nextNeed": {
+            "type": "integer",
+            "format": "int64",
+            "description": "到下一级需要的经验值"
+          },
+          "rewardResolver": {
+            "type": "string",
+            "description": "奖励对象"
+          },
+          "singleWire": {
+            "type": "integer",
+            "format": "int64",
+            "description": "单注可押注最大金额"
+          }
+        }
+      },
+      "RouletteCounter": {
+        "title": "RouletteCounter",
+        "type": "object",
+        "properties": {
+          "propertySize": {
+            "type": "integer",
+            "description": "已领取数量"
+          },
+          "canReceiveTime": {
+            "type": "integer",
+            "description": "可领取时间戳"
+          },
+          "enterTheRoulette": {
+            "type": "boolean",
+            "description": "是否可进入轮盘"
+          }
+        }
+      },
+      "Prize": {
+        "title": "Prize",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "奖名"
+          },
+          "prize": {
+            "type": "integer",
+            "description": "多少钱"
+          },
+          "type": {
+            "type": "integer",
+            "description": "类型"
+          }
+        }
+      },
+      "CollectResult": {
+        "title": "CollectResult",
+        "type": "object",
+        "properties": {
+          "rouletteCounter": {
+            "$ref": "#/components/schemas/RouletteCounter"
+          },
+          "prize": {
+            "type": "integer",
+            "description": "领到了多少钱"
+          }
+        }
+      },
+      "PiggyBank": {
+        "title": "PiggyBank",
+        "type": "object",
+        "properties": {
+          "state": {
+            "type": "integer",
+            "description": "0未满 1已满"
+          },
+          "payState": {
+            "type": "integer",
+            "description": "0未支付 1已支付"
+          },
+          "money": {
+            "type": "number",
+            "description": "已存金额"
+          }
+        }
+      },
+      "SetBalance": {
+        "title": "SetBalance",
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer"
+          },
+          "number": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "userId",
+          "number"
+        ]
+      },
+      "UserInfo": {
+        "title": "UserInfo",
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "description": "用户ID"
+          },
+          "nickName": {
+            "type": "string",
+            "description": "用户昵称"
+          },
+          "headPortrait": {
+            "description": "用户头像",
+            "type": "integer"
+          }
+        }
+      },
+      "Balance": {
+        "title": "Balance",
+        "type": "object",
+        "properties": {
+          "gold": {
+            "type": "string",
+            "description": "用户余额"
+          }
+        }
+      },
+      "Time": {
+        "title": "Time",
+        "type": "object",
+        "properties": {
+          "nowtime": {
+            "type": "integer",
+            "description": "当前时间戳"
+          }
+        },
+        "required": [
+          "nowtime"
+        ]
+      },
+      "TreasureChest": {
+        "title": "TreasureChest",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "用户的宝箱ID"
+          },
+          "level": {
+            "type": "string",
+            "description": "宝箱的等级"
+          },
+          "time": {
+            "type": "integer",
+            "description": "开启需要的时间"
+          },
+          "countdown": {
+            "type": "integer",
+            "description": "倒计时"
+          },
+          "openState": {
+            "type": "integer",
+            "description": "0倒计时中(不可开启) 1可开启 2未开启倒计时"
+          },
+          "speedUp": {
+            "type": "boolean",
+            "description": "true可加速 false不可加速"
+          }
+        }
+      },
+      "TreasureChestId": {
+        "title": "TreasureChestId",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          }
+        }
+      },
+      "TreasureChestPrize": {
+        "title": "TreasureChestPrize",
+        "type": "object",
+        "properties": {
+          "prize": {
+            "type": "integer",
+            "description": "奖品"
+          }
+        }
+      },
+      "AcceptOrPass": {
+        "title": "AcceptOrPass",
+        "type": "object",
+        "properties": {
+          "acceptOrPass": {
+            "type": "boolean",
+            "description": "true领取 false丢弃"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "user_token": {
+        "type": "apiKey",
+        "name": "user_token",
+        "in": "query"
+      },
+      "admin_token": {
+        "type": "apiKey",
+        "name": "admin_token",
+        "in": "query"
+      }
+    }
+  }
+}

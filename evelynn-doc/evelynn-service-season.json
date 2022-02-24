@@ -1,0 +1,394 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "evelynn-service-season",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "/season"
+    }
+  ],
+  "paths": {
+    "/task/detail": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [
+          "season"
+        ],
+        "operationId": "getSeasonTaskDetail",
+        "security": [
+          {
+            "user_token": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SeasonTask"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": []
+    },
+    "/task/submit": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [
+          "season"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SeasonTaskSubmit"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "submitSeasonTask",
+        "security": [
+          {
+            "user_token": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SeasonTaskSubmitReq"
+              }
+            }
+          }
+        },
+        "description": ""
+      },
+      "parameters": []
+    },
+    "/task/draw": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [
+          "season"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SeasonRewardDetail"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "getSeasonTaskReward",
+        "security": [
+          {
+            "user_token": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SeasonTaskDrawReq"
+              }
+            }
+          },
+          "description": ""
+        },
+        "description": ""
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "SeasonTask": {
+        "title": "SeasonTask",
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "default": 0,
+            "description": "赛季状态(0: 进行中， -1: 未开始)"
+          },
+          "daily": {
+            "type": "array",
+            "description": "日常任务",
+            "items": {
+              "$ref": "#/components/schemas/SeasonTaskItem"
+            }
+          },
+          "challenge": {
+            "type": "array",
+            "description": "挑战任务",
+            "items": {
+              "$ref": "#/components/schemas/SeasonTaskItem"
+            }
+          },
+          "crownReward": {
+            "$ref": "#/components/schemas/SeasonCrownReward"
+          },
+          "cardReward": {
+            "$ref": "#/components/schemas/SeasonRewardProcess"
+          },
+          "seasonEnd": {
+            "type": "integer",
+            "description": "赛季结束时间"
+          },
+          "dailyEnd": {
+            "type": "integer",
+            "description": "日常刷新时间"
+          },
+          "challengeEnd": {
+            "type": "integer",
+            "description": "挑战任务刷新时间"
+          },
+          "buyCard": {
+            "type": "boolean",
+            "description": "是否购买卡牌付费服务"
+          },
+          "buyCrown": {
+            "type": "boolean",
+            "description": "是否购买皇冠付费服务"
+          }
+        }
+      },
+      "SeasonTaskItem": {
+        "title": "SeasonTaskItem",
+        "type": "object",
+        "properties": {
+          "taskId": {
+            "type": "string",
+            "description": "任务id"
+          },
+          "title": {
+            "type": "string",
+            "description": "任务标题"
+          },
+          "type": {
+            "type": "integer",
+            "description": "任务类型"
+          },
+          "icon": {
+            "type": "integer",
+            "description": "任务图标"
+          },
+          "level": {
+            "type": "integer",
+            "description": "任务等级"
+          },
+          "current": {
+            "type": "number",
+            "description": "当前进度",
+            "format": "double"
+          },
+          "total": {
+            "type": "number",
+            "description": "总进度",
+            "format": "double"
+          },
+          "route": {
+            "type": "string",
+            "description": "跳转路由"
+          },
+          "status": {
+            "type": "integer",
+            "description": "任务状态"
+          },
+          "cardExp": {
+            "type": "integer"
+          },
+          "cardExpAdd": {
+            "type": "integer"
+          },
+          "crownExp": {
+            "type": "integer"
+          },
+          "crownExpAdd": {
+            "type": "integer"
+          }
+        }
+      },
+      "SeasonCrownReward": {
+        "title": "SeasonCrownReward",
+        "type": "object",
+        "properties": {
+          "endAt": {
+            "type": "integer",
+            "description": "奖励刷新时间"
+          },
+          "index": {
+            "type": "integer",
+            "description": "当前阶段索引"
+          },
+          "process": {
+            "type": "array",
+            "description": "每个阶段的进度详情",
+            "items": {
+              "$ref": "#/components/schemas/SeasonRewardProcess"
+            }
+          }
+        }
+      },
+      "SeasonRewardProcess": {
+        "title": "SeasonRewardProcess",
+        "type": "object",
+        "properties": {
+          "endAt": {
+            "type": "integer",
+            "description": "奖励刷新时间"
+          },
+          "current": {
+            "type": "integer",
+            "description": "当前进度"
+          },
+          "total": {
+            "type": "integer",
+            "description": "总进度"
+          },
+          "rewards": {
+            "type": "array",
+            "description": "所有奖励",
+            "items": {
+              "$ref": "#/components/schemas/SeasonReward"
+            }
+          }
+        }
+      },
+      "SeasonReward": {
+        "title": "SeasonReward",
+        "type": "object",
+        "properties": {
+          "target": {
+            "type": "integer",
+            "description": "目标进度"
+          },
+          "reward": {
+            "$ref": "#/components/schemas/SeasonRewardDetail"
+          },
+          "payReward": {
+            "$ref": "#/components/schemas/SeasonRewardDetail"
+          }
+        }
+      },
+      "SeasonTaskSubmitReq": {
+        "title": "SeasonTaskSubmitReq",
+        "type": "object",
+        "properties": {
+          "taskId": {
+            "type": "string"
+          },
+          "type": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "taskId",
+          "type"
+        ]
+      },
+      "SeasonTaskSubmit": {
+        "title": "SeasonTaskSubmit",
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer"
+          },
+          "task": {
+            "$ref": "#/components/schemas/SeasonTaskItem"
+          }
+        }
+      },
+      "SeasonRewardDetail": {
+        "title": "SeasonRewardDetail",
+        "type": "object",
+        "properties": {
+          "rewardId": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "status": {
+            "type": "integer"
+          }
+        }
+      },
+      "SeasonTaskDrawReq": {
+        "title": "SeasonTaskDrawReq",
+        "type": "object",
+        "description": "0卡牌奖励1皇冠奖励",
+        "properties": {
+          "type": {
+            "type": "integer",
+            "description": "0卡牌,1皇冠"
+          },
+          "index": {
+            "type": "integer",
+            "default": 0,
+            "description": "领取哪个阶段的奖励, 卡牌默认0"
+          },
+          "rewardId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "index",
+          "rewardId"
+        ]
+      },
+      "SeasonTaskUpdate": {
+        "title": "SeasonTaskUpdate",
+        "type": "object",
+        "properties": {
+          "daily": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SeasonTaskItem"
+            }
+          },
+          "challenge": {
+            "type": [
+              "string",
+              "array"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/SeasonTaskItem"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "user_token": {
+        "name": "user_token",
+        "type": "apiKey",
+        "in": "query"
+      },
+      "admin_token": {
+        "name": "admin_token",
+        "type": "apiKey",
+        "in": "query"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "season"
+    }
+  ]
+}

@@ -16,7 +16,7 @@ it('generateApiCode ', function () {
 });
 
 it('test fes patch content to file', function () {
-  fs.appendFileSync(path.resolve(cwd(),'src/test/asgardTemplate.ts'), `
+  fs.appendFileSync(path.resolve(cwd(),'src/test/test.ts'), `
   import {AsgardClient, AsgardClientConfig} from "@imf/asgard-client";
 
 class Api {
@@ -66,5 +66,5 @@ class Api {
 it('asgardTemplateCodeGen',()=>{
   const jsonObj = fes.readJSONSync(path.resolve(cwd(),'evelynn-doc','evelynn-service-mail.json'))
   const string =asgardTemplateCodeGen(jsonObj)
-  fs.appendFileSync(path.resolve(cwd(),'api/evelynn-service-mail.ts'),string)
+  fs.appendFileSync(path.resolve(cwd(),'src/test/test.ts'),string)
 })

@@ -1,0 +1,82 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "evelynn-service-user",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "/user"
+    }
+  ],
+  "paths": {
+    "/login/deviceNumber": {
+      "get": {
+        "summary": "设备号登陆",
+        "tags": [
+          "user"
+        ],
+        "operationId": "loginDeviceNumber",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Token"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Login"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Token": {
+        "title": "Token",
+        "type": "object",
+        "description": "",
+        "properties": {
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+      "Login": {
+        "title": "Login",
+        "type": "object",
+        "properties": {
+          "os": {
+            "type": "string",
+            "description": "操作系统"
+          },
+          "equipment": {
+            "type": "string",
+            "description": "设备型号"
+          },
+          "deviceNumber": {
+            "type": "string",
+            "description": "设备号"
+          }
+        },
+        "required": [
+          "deviceNumber"
+        ]
+      }
+    }
+  }
+}

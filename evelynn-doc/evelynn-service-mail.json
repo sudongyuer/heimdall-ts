@@ -1,0 +1,131 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "evelynn-service-mail",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "/mail"
+    }
+  ],
+  "paths": {
+    "/income/{userId}": {
+      "patch": {
+        "summary": "新邮件广播",
+        "operationId": "boardIncome",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "mail"
+        ]
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "integer"
+          },
+          "name": "userId",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/mail": {
+      "get": {
+        "summary": "邮件",
+        "tags": [
+          "mail"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Mail"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "getMail"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Mail": {
+        "title": "Mail",
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string"
+          },
+          "mainIcon": {
+            "type": "string"
+          },
+          "subIcon": {
+            "type": "string"
+          },
+          "buttonContent": {
+            "type": "string"
+          },
+          "buttonEffect": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "rewardType": {
+                      "type": "string"
+                    },
+                    "rewardCount": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "args": {
+            "type": "object"
+          },
+          "expireTime": {
+            "type": "integer"
+          },
+          "sendTime": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "content",
+          "mainIcon",
+          "buttonEffect",
+          "expireTime"
+        ]
+      }
+    }
+  }
+}
