@@ -48,8 +48,9 @@ if (options.generate) {
   //过滤不同类型的repo
   for (const [repoName, rep] of repos as repos) {
     if (!rep.type) {
-      Promise.reject('no type ,please check~')
-    } else {
+      //默认为http
+      rep.type='http'
+    }
       switch (rep.type) {
         case 'http':
           if(!httpRepos){
@@ -65,8 +66,10 @@ if (options.generate) {
           }
           asgardRepos[repoName]={...rep}
           break;
+        default :
+            Promise.reject('no type ,please check~')
+          break;
       }
-    }
   }
 
   //1.执行下载文件命令
