@@ -13,7 +13,7 @@ let baseUrl = jsonObj.servers[0].description
     pathObject.path=path
     const pathObj = paths[path]
     //判断有没有parameters
-    if (pathObj.parameters && typeof (pathObj.parameters) === 'object' && pathObj.parameters.length !== 0) {
+    if (hasParameters(pathObj)) {
       pathObject.parameters = pathObj.parameters[0]
     }
     //获取当前的方法 path get
@@ -79,7 +79,36 @@ export class Api {
     }
   
   ${pathObjects.map((pathObject)=>{
-      return `
+    
+    if(pathObject.parameters){
+      //生成带url参数的
+      return generateMethodWithParameter(pathObject)
+    }else {
+      //生成普通的
+      return generateNormalMethodString(pathObject)
+    }
+    }).join('')}
+}
+`
+}
+
+function generateMethodWithParameter(pathObject){
+  return`
+    \n
+    /**
+     * 
+     * ${pathObject.summary}
+     */
+    ${pathObject.operationId.replace(/-([a-z])/,function (match,p1){return p1.toUpperCase()})}(${pathObject.requestBody?`payload:operations["${pathObject.operationId}"]["requestBody"]["content"]["application/json"],`:''}${pathObject.parameters?`parameter:operations["${pathObject.operationId}"]["parameters"]["path"],`:``}){
+    
+      return this.asgardClient.${pathObject.asgardMethod}${shouldHasReturnGeneric(pathObject)?`<operations["${pathObject.operationId}"]["responses"]["200"]["content"]["application/json"]>`:``}(\`${pathObject.baseUrl}${pathObject.path.replace(/{\w*}/,(match)=>'')}\${parameter}\`${pathObject.requestBody?`,payload`:``})
+    \n
+     }   
+      `
+}
+
+function generateNormalMethodString(pathObject){
+  return `
     \n
     /**
      * 
@@ -91,12 +120,13 @@ export class Api {
     \n
      }   
       `
-    }).join('')}
-}
-`
 }
 
 function shouldHasReturnGeneric(pathObject):boolean{
   return pathObject.responses&&pathObject.asgardMethod!='post'&&(JSON.stringify(pathObject.responses)!=='{}')
 }
 // operations[operationId][responses][200][content][application/json]
+function hasParameters(pathObj){
+  return pathObj.parameters && typeof (pathObj.parameters) === 'object' && pathObj.parameters.length !== 0;
+
+}
