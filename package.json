@@ -1,6 +1,6 @@
 {
   "name": "@imf/heimdall-ts",
-  "version": "2.2.0-alpha",
+  "version": "2.2.1-alpha",
   "description": "",
   "type": "module",
   "bin": {
@@ -26,7 +26,8 @@
     "openapi-ts-client-gen": "^1.3.1",
     "shelljs": "^0.8.5",
     "swagger-typescript-api": "^9.2.0",
-    "typescript": "^4.2.4"
+    "typescript": "^4.2.4",
+    "openapi-typescript": "^5.2.0"
   },
   "publishConfig": {
     "@imf:registry": "http://maven.jinuo.me/repository/jinuo-npm-inner"
@@ -38,7 +39,6 @@
     "@types/node": "^16.10.5",
     "babel-jest": "^27.5.1",
     "jest": "^27.5.1",
-    "openapi-typescript": "^5.2.0",
     "watch": "^1.0.2"
   },
   "heimdall": {
