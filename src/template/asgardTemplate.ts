@@ -101,7 +101,7 @@ function generateMethodWithParameter(pathObject){
      */
     ${pathObject.operationId.replace(/-([a-z])/,function (match,p1){return p1.toUpperCase()})}(${pathObject.requestBody?`payload:operations["${pathObject.operationId}"]["requestBody"]["content"]["application/json"],`:''}${pathObject.parameters?`parameter:operations["${pathObject.operationId}"]["parameters"]["path"],`:``}){
     
-      return this.asgardClient.${pathObject.asgardMethod}${shouldHasReturnGeneric(pathObject)?`<operations["${pathObject.operationId}"]["responses"]["200"]["content"]["application/json"]>`:``}(\`${pathObject.baseUrl}${pathObject.path.replace(/{\w*}/,(match)=>'')}\${parameter}\`${pathObject.requestBody?`,payload`:``})
+      return this.asgardClient.${pathObject.asgardMethod}${shouldHasReturnGeneric(pathObject)?`<operations["${pathObject.operationId}"]["responses"]["200"]["content"]["application/json"]>`:``}(\`${pathObject.baseUrl}${pathObject.path.replace(/{(\w*)}/,(match,p1)=>`\${parameter["${p1}"]}`)}\`${pathObject.requestBody?`,payload`:``})
     \n
      }   
       `

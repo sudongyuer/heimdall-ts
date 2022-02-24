@@ -69,7 +69,6 @@ export interface operations {
 
 export interface external {}
 
-
 import {AsgardClient, AsgardClientConfig} from "@imf/asgard-client";
 
 export class Api {
@@ -96,7 +95,7 @@ export class Api {
      */
     boardIncome(parameter:operations["boardIncome"]["parameters"]["path"],){
     
-      return this.asgardClient.broadcast<operations["boardIncome"]["responses"]["200"]["content"]["application/json"]>(`/mail/income/${parameter}`)
+      return this.asgardClient.broadcast<operations["boardIncome"]["responses"]["200"]["content"]["application/json"]>(`/mail/income/${parameter["userId"]}`)
     
 
      }   
