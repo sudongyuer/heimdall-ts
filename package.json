@@ -1,6 +1,6 @@
 {
   "name": "@imf/heimdall-ts",
-  "version": "2.1.0-alpha",
+  "version": "2.2.0-alpha",
   "description": "",
   "type": "module",
   "bin": {
@@ -16,7 +16,7 @@
   "author": "sudongyu",
   "license": "ISC",
   "dependencies": {
-    "@imf/asgard-client": "^2.0.0",
+    "@imf/asgard-client": "^2.0.1",
     "@types/fs-extra": "^9.0.13",
     "axios": "^0.24.0",
     "commander": "^8.2.0",
