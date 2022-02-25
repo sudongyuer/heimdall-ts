@@ -1,13 +1,42 @@
 # heimdall-ts ✨
 [中文](./README.md) ｜ [English](./README_EN.md)
 
-![](./img/heimdall.jpg)
+<p align="center">
+<a href="https://github.com/HaiyaoTec/heimdall-ts" target="_blank">
+<img src="https://static01.imgkr.com/temp/11972f34addd478ca4cc7a62fd7baf5f.jpg" alt="heimdall-ts" height="250" width="250"/>
+</a>
+</p>
 
-非常简单的帮助你生成typeScript api模块 
+
+<p align="center">
+<a href="https://www.npmjs.com/package/@haiyaotec/heimdall-ts" target="__blank"><img src="https://img.shields.io/npm/v/@haiyaotec/heimdall-ts?color=2B90B6&label=" alt="NPM version"></a>
+<a href="https://www.npmjs.com/package/@slidev/cli" target="__blank"><img alt="NPM Downloads" src="https://img.shields.io/npm/dm/@haiyaotec/heimdall-ts?color=349dbe&label="></a>
+<a href="https://github.com/HaiyaoTec/heimdall-ts" target="__blank"><img src="https://img.shields.io/static/v1?label=&message=docs%20%26%20demos&color=45b8cd" alt="Docs & Demos"></a>
+<a href="https://sli.dev/themes/gallery.html" target="__blank"><img src="https://img.shields.io/static/v1?label=&message=themes&color=4ec5d4" alt="Themes"></a>
+<br>
+<a href="https://github.com/slidevjs/slidev" target="__blank"><img alt="GitHub stars" src="https://img.shields.io/github/stars/HaiyaoTec/heimdall-ts?style=social"></a>
+</p>
+<img src="https://cdn.jsdelivr.net/gh/sudongyuer/image-bed@master/20220225/api-logo.2n9m692p1i80.webp" align="left"
+     title="swagger-typescript-api logo by js2me" width="93" height="180">
+<p>
+Generate api via swagger scheme.</br>
+Supports OA 3.0, 2.0, JSON, yaml</br>
+
+Generated api module [**Axios**](https://github.com/axios/axios) to make requests.
+
+</p>
+
+非常简单的帮助你生成typeScript api模块
 
 (支持 swagger2.0 和 OpenApi 3.0 规范)
 
 玩得开心 ^_^
+
+## How it works ？
+![](https://cdn.jsdelivr.net/gh/sudongyuer/image-bed@master/20220225/works.72b033e292g0.gif)
+
+![](https://cdn.jsdelivr.net/gh/sudongyuer/image-bed@master/20220225/generate.5d3kp2lqqyc0.gif)
+
 
 ## Feature ❤️
 
@@ -43,7 +72,7 @@ Install heimdall-ts with npm
 生成的API文件都在当前项目 **/node_modules/@imf/heimdall-ts/api** 中。
 
 `api/index.ts`
-
+````
 ```ts
 //需要什么模块API直接按需导入就行了
 import {
