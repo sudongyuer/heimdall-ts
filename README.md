@@ -56,6 +56,8 @@ Generated api module [**Axios**](https://github.com/axios/axios) to make request
 
 - 支持多openAPI存储库生成代码
 
+- 支持内源Asgard2框架前端代码生成
+
 ## 安装 🌝
 
 Install heimdall-ts with npm

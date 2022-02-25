@@ -58,6 +58,8 @@ have fun ^_^
 - support rollback version 
 
 - support multi openAPI repository
+  
+-  Support for internal Asgard2 framework front-end code generation
 
 ## Installation 🌝
 
