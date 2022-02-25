@@ -1,6 +1,6 @@
 {
   "name": "@imf/heimdall-ts",
-  "version": "2.2.3-alpha",
+  "version": "2.2.4-alpha",
   "description": "",
   "type": "module",
   "bin": {
