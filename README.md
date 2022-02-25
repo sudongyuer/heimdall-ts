@@ -72,7 +72,7 @@ Install heimdall-ts with npm
 生成的API文件都在当前项目 **/node_modules/@imf/heimdall-ts/api** 中。
 
 `api/index.ts`
-````
+
 ```ts
 //需要什么模块API直接按需导入就行了
 import {
@@ -172,25 +172,31 @@ export default mainApi;
 | :---------- | :------- | :------------------------------------- | :--------------- |
 | `git` | `string` | **Required**  仓库地址ssh or https                       | eg: https://gitee.com/xxx/abc.git             |
 | `version` | `string` | **Required**   仓库的版本号(^代表最新)        | eg: ^ or 6a7082d   |
-
+| `type` | `string` | **optional**   选择生成代码的类型(默认为http)      | eg: http or asgard  |
 
 
 `package.json`
 
 ```json
-  "heimdall": {
+ "heimdall": {
     "repo": {
-        "abc": {
-            "git": "https://gitee.com/xxx/abc.git",
-            "version": "^"
-        },
-        "demo-api": {
-            "git": "git@gitee.com:xxx/demo-api.git",
-            "version": "^"
-        }
+      "evelynn-doc": {
+        "type": "asgard",
+        "git": "https://gitee.com/jinuotech/evelynn-doc.git",
+        "version": "^"
+      },
+      "kaisa-api": {
+        "git": "https://gitee.com/jinuotech/kaisa-api.git",
+        "version": "^"
+      },
+      "heracles-api": {
+        "type": "http",
+        "git": "https://gitee.com/jinuoimf/heracles-api.git",
+        "version": "^"
+      }
     }
   }
-```
+ ```
 
 ## Command 🪟
 
@@ -217,16 +223,22 @@ heimdall -l <repoName>
 `package.json`
 
 ```json
-  "heimdall": {
+ "heimdall": {
     "repo": {
-        "abc": {
-            "git": "https://gitee.com/xxx/abc.git",
-            "version": "^"
-        },
-        "demo-api": {
-            "git": "git@gitee.com:xxx/demo-api.git",
-            "version": "^"
-        }
+      "evelynn-doc": {
+        "type": "asgard",
+        "git": "https://gitee.com/jinuotech/evelynn-doc.git",
+        "version": "^"
+      },
+      "kaisa-api": {
+        "git": "https://gitee.com/jinuotech/kaisa-api.git",
+        "version": "^"
+      },
+      "heracles-api": {
+        "type": "http",
+        "git": "https://gitee.com/jinuoimf/heracles-api.git",
+        "version": "^"
+      }
     }
   }
  ```

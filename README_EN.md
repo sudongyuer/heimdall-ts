@@ -173,23 +173,30 @@ config is required
 | :---------- | :------- | :------------------------------------- | :--------------- |
 | `git` | `string` | **Required**  repo git address (ssh or https)                       | eg: https://gitee.com/xxx/abc.git             |
 | `version` | `string` | **Required**   repo version code(^means latest)        | eg: ^ or 6a7082d   |
+| `type` | `string` | **optional**   choose what type code you want(default http)      | eg: http or asgard  |
 
 `package.json`
 
 ```json
-  "heimdall": {
+ "heimdall": {
     "repo": {
-        "abc": {
-            "git": "https://gitee.com/xxx/abc.git",
-            "version": "^"
-        },
-        "demo-api": {
-            "git": "git@gitee.com:xxx/demo-api.git",
-            "version": "^"
-        }
+      "evelynn-doc": {
+        "type": "asgard",
+        "git": "https://gitee.com/jinuotech/evelynn-doc.git",
+        "version": "^"
+      },
+      "kaisa-api": {
+        "git": "https://gitee.com/jinuotech/kaisa-api.git",
+        "version": "^"
+      },
+      "heracles-api": {
+        "type": "http",
+        "git": "https://gitee.com/jinuoimf/heracles-api.git",
+        "version": "^"
+      }
     }
   }
-```
+ ```
 
 ## Command 🪟
 
@@ -216,19 +223,25 @@ heimdall -l kalista
 `package.json`
 
 ```json
-  "heimdall": {
+ "heimdall": {
     "repo": {
-        "abc": {
-            "git": "https://gitee.com/xxx/abc.git",
-            "version": "^"
-        },
-        "demo-api": {
-            "git": "git@gitee.com:xxx/demo-api.git",
-            "version": "^"
-        }
+      "evelynn-doc": {
+        "type": "asgard",
+        "git": "https://gitee.com/jinuotech/evelynn-doc.git",
+        "version": "^"
+      },
+      "kaisa-api": {
+        "git": "https://gitee.com/jinuotech/kaisa-api.git",
+        "version": "^"
+      },
+      "heracles-api": {
+        "type": "http",
+        "git": "https://gitee.com/jinuoimf/heracles-api.git",
+        "version": "^"
+      }
     }
   }
-```
+ ```
 
 ## Q&A ❓
 
