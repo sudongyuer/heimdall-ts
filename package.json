@@ -1,6 +1,6 @@
 {
   "name": "@imf/heimdall-ts",
-  "version": "2.2.9-alpha",
+  "version": "2.2.10-alpha",
   "description": "",
   "type": "module",
   "module": "build/heimdall-ts.es.js",
