@@ -99,7 +99,7 @@ function generateMethodWithParameter(pathObject){
      * 
      * ${pathObject.summary}
      */
-    ${pathObject.operationId.replace(/-([a-z])/,function (match,p1){return p1.toUpperCase()})}(${pathObject.requestBody?`payload:operations["${pathObject.operationId}"]["requestBody"]["content"]["application/json"],`:''}${pathObject.parameters?`parameter:operations["${pathObject.operationId}"]["parameters"]["path"],`:``}){
+    ${pathObject.operationId.replace(/-([a-zA-Z])/,function (match,p1){return p1.toUpperCase()})}(${pathObject.requestBody?`payload:operations["${pathObject.operationId}"]["requestBody"]["content"]["application/json"],`:''}${pathObject.parameters?`parameter:operations["${pathObject.operationId}"]["parameters"]["path"],`:``}){
     
       return this.asgardClient.${pathObject.asgardMethod}${shouldHasReturnGeneric(pathObject)?`<operations["${pathObject.operationId}"]["responses"]["200"]["content"]["application/json"]>`:``}(\`${pathObject.baseUrl}${pathObject.path.replace(/{(\w*)}/,(match,p1)=>`\${parameter["${p1}"]}`)}\`${pathObject.requestBody?`,payload`:``})
     \n
@@ -114,7 +114,7 @@ function generateNormalMethodString(pathObject){
      * 
      * ${pathObject.summary}
      */
-    ${pathObject.operationId.replace(/-([a-z])/,function (match,p1){return p1.toUpperCase()})}(${pathObject.requestBody?`payload:operations["${pathObject.operationId}"]["requestBody"]["content"]["application/json"]`:''}){
+    ${pathObject.operationId.replace(/-([a-zA-Z])/,function (match,p1){return p1.toUpperCase()})}(${pathObject.requestBody?`payload:operations["${pathObject.operationId}"]["requestBody"]["content"]["application/json"]`:''}){
     
       return this.asgardClient.${pathObject.asgardMethod}${shouldHasReturnGeneric(pathObject)?`<operations["${pathObject.operationId}"]["responses"]["200"]["content"]["application/json"]>`:``}("${pathObject.baseUrl}${pathObject.path}"${pathObject.requestBody?`,payload`:``})
     \n
