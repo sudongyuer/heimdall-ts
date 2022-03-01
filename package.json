@@ -3,6 +3,7 @@
   "version": "2.2.8-alpha",
   "description": "",
   "type": "module",
+  "module": "build/heimdall-ts.es.js",
   "bin": {
     "heimdall": "bin/heimdall.js"
   },
@@ -11,7 +12,8 @@
     "prepublishOnly": "rm -rf ./dist && tsc",
     "test": "jest",
     "build": "rm -rf ./dist && tsc",
-    "watch": "watch 'npm run build' ./src"
+    "watch": "watch 'npm run build' ./src",
+    "vite build": "vite build"
   },
   "author": "sudongyu",
   "license": "ISC",
@@ -39,6 +41,7 @@
     "@types/node": "^16.10.5",
     "babel-jest": "^27.5.1",
     "jest": "^27.5.1",
+    "vite": "^2.8.5",
     "watch": "^1.0.2"
   },
   "heimdall": {
