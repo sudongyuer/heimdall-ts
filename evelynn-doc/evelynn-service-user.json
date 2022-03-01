@@ -17,7 +17,7 @@
         "tags": [
           "user"
         ],
-        "operationId": "loginDeviceNumber",
+        "operationId": "login-deviceNumber",
         "description": "",
         "parameters": [],
         "responses": {
@@ -37,6 +37,68 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/Login"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/achievement": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [
+          "Achievement"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Achievement"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-achievements",
+        "security": [
+          {
+            "user_token": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/achievement/getReward": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [
+          "achievement"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AchievementReward"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-Reward",
+        "security": [
+          {
+            "user_token": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AchievementReq"
               }
             }
           }
@@ -76,6 +138,82 @@
         "required": [
           "deviceNumber"
         ]
+      },
+      "Achievement": {
+        "title": "Achievement",
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AchievementItem"
+            }
+          }
+        }
+      },
+      "AchievementItem": {
+        "title": "AchievementItem",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "成就id"
+          },
+          "process": {
+            "type": "number",
+            "format": "double",
+            "description": "当前进度"
+          },
+          "finishAt": {
+            "type": "integer",
+            "description": "完成时间"
+          },
+          "draw": {
+            "type": "boolean",
+            "description": "是否已领取"
+          },
+          "content": {
+            "type": "string",
+            "description": "成就额外内容"
+          },
+          "reward": {
+            "type": "string",
+            "description": "成就奖励"
+          }
+        }
+      },
+      "AchievementReq": {
+        "title": "AchievementReq",
+        "type": "object",
+        "properties": {
+          "achievementId": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "achievementId"
+        ]
+      },
+      "AchievementReward": {
+        "title": "AchievementReward",
+        "type": "object",
+        "properties": {
+          "reward": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "user_token": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "user_token"
+      },
+      "admin_token": {
+        "name": "admin_token",
+        "type": "apiKey",
+        "in": "query"
       }
     }
   }

@@ -64,7 +64,7 @@ class Api {
   `,'utf-8')
 });
 it('asgardTemplateCodeGen',()=>{
-  const jsonObj = fes.readJSONSync(path.resolve(cwd(),'evelynn-doc','evelynn-service-mail.json'))
+  const jsonObj = fes.readJSONSync(path.resolve(cwd(),'evelynn-doc','evelynn-service-user.json'))
   const string =asgardTemplateCodeGen(jsonObj)
   fs.appendFileSync(path.resolve(cwd(),'src/test/test.ts'),string)
 })
