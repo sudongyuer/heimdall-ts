@@ -1,6 +1,6 @@
 {
   "name": "@imf/heimdall-ts",
-  "version": "2.2.13-alpha",
+  "version": "2.2.14-alpha",
   "description": "",
   "type": "module",
   "module": "build/heimdall-ts.es.js",
@@ -14,7 +14,7 @@
     "build": "rm -rf ./dist && tsc",
     "watch": "watch 'npm run build' ./src",
     "vite build": "vite build",
-    "publish": "npm run publish"
+    "publish": "npm publish"
   },
   "author": "sudongyu",
   "license": "ISC",
