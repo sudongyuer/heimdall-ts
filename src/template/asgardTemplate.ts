@@ -61,16 +61,13 @@ let baseUrl = jsonObj.servers[0].description
   }
   // console.log(pathObjects)
     return `
-import {AsgardClient, AsgardClientConfig} from "@imf/asgard-client";
+import { AsgardClient } from "@imf/asgard-client";
 
 export class Api {
 
-    public asgardClientConfig: AsgardClientConfig;
-  
     public asgardClient: AsgardClient
   
     constructor(asgardClient:AsgardClient) {
-      this.asgardClientConfig = asgardClientConfig
       this.asgardClient = asgardClient
     }
   
