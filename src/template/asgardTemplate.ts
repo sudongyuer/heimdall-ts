@@ -69,9 +69,9 @@ export class Api {
   
     public asgardClient: AsgardClient
   
-    constructor(asgardClientConfig:AsgardClientConfig) {
+    constructor(asgardClient:AsgardClient) {
       this.asgardClientConfig = asgardClientConfig
-      this.asgardClient = new AsgardClient(this.asgardClientConfig)
+      this.asgardClient = asgardClient
     }
   
     connect() {
