@@ -49,27 +49,27 @@ if (options.generate) {
   for (const [repoName, rep] of repos as repos) {
     if (!rep.type) {
       //默认为http
-      rep.type='http'
+      rep.type = 'http'
     }
-      switch (rep.type) {
-        case 'http':
-          if(!httpRepos){
-            httpRepos={}
-            httpRepos=object2iterator(httpRepos)
-          }
-          httpRepos[repoName]={...rep}
-          break;
-        case 'asgard':
-          if(!asgardRepos){
-            asgardRepos={}
-            asgardRepos=object2iterator(asgardRepos)
-          }
-          asgardRepos[repoName]={...rep}
-          break;
-        default :
-            Promise.reject('no type ,please check~')
-          break;
-      }
+    switch (rep.type) {
+      case 'http':
+        if (!httpRepos) {
+          httpRepos = {}
+          httpRepos = object2iterator(httpRepos)
+        }
+        httpRepos[repoName] = {...rep}
+        break;
+      case 'asgard':
+        if (!asgardRepos) {
+          asgardRepos = {}
+          asgardRepos = object2iterator(asgardRepos)
+        }
+        asgardRepos[repoName] = {...rep}
+        break;
+      default :
+        Promise.reject('no type ,please check~')
+        break;
+    }
   }
 
   //1.执行下载文件命令
@@ -79,16 +79,18 @@ if (options.generate) {
   await removeDir(path.resolve(cwd(), "node_modules/@imf/heimdall-ts/api"))
 
   //生成所有的HTTP API
-  if(httpRepos){
+  if (httpRepos) {
     await createMultiHTTPApi(httpRepos)
   }
   //生成所有的asgard API
-  if(asgardRepos){
+  if (asgardRepos) {
     await createMultiAsgardApi(asgardRepos)
   }
   // //3.生成入口文件
   await generateMain()
-  // //4.删除下载的yml所在文件夹
+  // 4.执行rollup打包命令 将文件打包成一个单个文件 cjs es
+  await build(path.resolve(cwd(), 'node_modules/@imf/heimdall-ts/'))
+  // 5.删除下载的yml所在文件夹
   await removeCacheFile(repos)
 
 } else if (options.log) {
@@ -117,6 +119,21 @@ function showLog(repo) {
         cwd: `${path.resolve(cwd(), repo)}`
       }, () => {
         resolve()
+      }
+    )
+  })
+}
+
+/**
+ * 执行vte打包命令
+ */
+export function build(path) {
+  return new Promise<void>((resolve, reject) => {
+    shell.exec('npm run vite-build', {
+        cwd: `${path}`
+      }, () => {
+        resolve()
+        console.log('vite build success')
       }
     )
   })

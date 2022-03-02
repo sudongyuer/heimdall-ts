@@ -5,6 +5,8 @@ import * as path from "path";
 import * as fs from "fs";
 import * as fes from 'fs-extra'
 import * as os from 'os'
+import {build} from "../client";
+
 it('test sum  ', function () {
   expect(sum(1,2)).toBe(3)
 });
@@ -68,3 +70,8 @@ it('asgardTemplateCodeGen',()=>{
   const string =asgardTemplateCodeGen(jsonObj)
   fs.appendFileSync(path.resolve(cwd(),'src/test/test.ts'),string)
 })
+
+// it('test vite build', function () {
+//   console.log(cwd())
+//   build(path.resolve(cwd()))
+// });
