@@ -5,7 +5,6 @@ import * as path from "path";
 import * as fs from "fs";
 import * as fes from 'fs-extra'
 import * as os from 'os'
-import {build} from "../client";
 
 it('test sum  ', function () {
   expect(sum(1,2)).toBe(3)
@@ -66,7 +65,7 @@ class Api {
   `,'utf-8')
 });
 it('asgardTemplateCodeGen',()=>{
-  const jsonObj = fes.readJSONSync(path.resolve(cwd(),'evelynn-doc','evelynn-service-user.json'))
+  const jsonObj = fes.readJSONSync(path.resolve(cwd(),'evelynn-doc','evelynn-service-mail.json'))
   const string =asgardTemplateCodeGen(jsonObj)
   fs.appendFileSync(path.resolve(cwd(),'src/test/test.ts'),string)
 })

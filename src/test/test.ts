@@ -69,17 +69,15 @@ export interface operations {
 
 export interface external {}
 
-import {AsgardClient, AsgardClientConfig} from "@imf/asgard-client";
+
+import { AsgardClient , options} from "@imf/asgard-client";
 
 export class Api {
 
-    public asgardClientConfig: AsgardClientConfig;
-  
     public asgardClient: AsgardClient
   
-    constructor(asgardClientConfig:AsgardClientConfig) {
-      this.asgardClientConfig = asgardClientConfig
-      this.asgardClient = new AsgardClient(this.asgardClientConfig)
+    constructor(asgardClient:AsgardClient) {
+      this.asgardClient = asgardClient
     }
   
     connect() {
@@ -93,55 +91,9 @@ export class Api {
      * 
      * 新邮件广播
      */
-    boardIncome(parameter:operations["boardIncome"]["parameters"]["path"],){
+    boardIncome(parameter:operations["boardIncome"]["parameters"]["path"],options?:options,){
     
-      return this.asgardClient.broadcast<operations["boardIncome"]["responses"]["200"]["content"]["application/json"]>(`/mail/income/${parameter["userId"]}`)
-    
-
-     }   
-      
-    
-
-    /**
-     * 
-     * 邮件
-     */
-    getMail(){
-    
-      return this.asgardClient.get<operations["getMail"]["responses"]["200"]["content"]["application/json"]>("/mail/mail")
-    
-
-     }   
-      
-}
-
-import {AsgardClient, AsgardClientConfig} from "@imf/asgard-client";
-
-export class Api {
-
-    public asgardClientConfig: AsgardClientConfig;
-  
-    public asgardClient: AsgardClient
-  
-    constructor(asgardClientConfig:AsgardClientConfig) {
-      this.asgardClientConfig = asgardClientConfig
-      this.asgardClient = new AsgardClient(this.asgardClientConfig)
-    }
-  
-    connect() {
-      this.asgardClient.connect()
-    }
-  
-  
-    
-
-    /**
-     * 
-     * 新邮件广播
-     */
-    boardIncome(parameter:operations["boardIncome"]["parameters"]["path"],){
-    
-      return this.asgardClient.broadcast<operations["boardIncome"]["responses"]["200"]["content"]["application/json"]>(`/mail/income/${parameter["userId"]}`)
+      return this.asgardClient.broadcast<operations["boardIncome"]["responses"]["200"]["content"]["application/json"]>(`/mail/income/${parameter["userId"]}`,{},options??options)
     
 
      }   
@@ -152,231 +104,9 @@ export class Api {
      * 
      * 邮件
      */
-    getMail(){
+    getMail(options?:options,){
     
-      return this.asgardClient.get<operations["getMail"]["responses"]["200"]["content"]["application/json"]>("/mail/mail")
-    
-
-     }   
-      
-}
-
-import {AsgardClient, AsgardClientConfig} from "@imf/asgard-client";
-
-export class Api {
-
-    public asgardClientConfig: AsgardClientConfig;
-  
-    public asgardClient: AsgardClient
-  
-    constructor(asgardClientConfig:AsgardClientConfig) {
-      this.asgardClientConfig = asgardClientConfig
-      this.asgardClient = new AsgardClient(this.asgardClientConfig)
-    }
-  
-    connect() {
-      this.asgardClient.connect()
-    }
-  
-  
-    
-
-    /**
-     * 
-     * 设备号登陆
-     */
-    loginDeviceNumber(payload:operations["login-deviceNumber"]["requestBody"]["content"]["application/json"]){
-    
-      return this.asgardClient.get<operations["login-deviceNumber"]["responses"]["200"]["content"]["application/json"]>("/user/login/deviceNumber",payload)
-    
-
-     }   
-      
-    
-
-    /**
-     * 
-     * Your GET endpoint
-     */
-    getAchievements(){
-    
-      return this.asgardClient.get<operations["get-achievements"]["responses"]["200"]["content"]["application/json"]>("/user/achievement")
-    
-
-     }   
-      
-    
-
-    /**
-     * 
-     * Your GET endpoint
-     */
-    get-Reward(payload:operations["get-Reward"]["requestBody"]["content"]["application/json"]){
-    
-      return this.asgardClient.get<operations["get-Reward"]["responses"]["200"]["content"]["application/json"]>("/user/achievement/getReward",payload)
-    
-
-     }   
-      
-}
-
-import {AsgardClient, AsgardClientConfig} from "@imf/asgard-client";
-
-export class Api {
-
-    public asgardClientConfig: AsgardClientConfig;
-  
-    public asgardClient: AsgardClient
-  
-    constructor(asgardClientConfig:AsgardClientConfig) {
-      this.asgardClientConfig = asgardClientConfig
-      this.asgardClient = new AsgardClient(this.asgardClientConfig)
-    }
-  
-    connect() {
-      this.asgardClient.connect()
-    }
-  
-  
-    
-
-    /**
-     * 
-     * 设备号登陆
-     */
-    loginDeviceNumber(payload:operations["login-deviceNumber"]["requestBody"]["content"]["application/json"]){
-    
-      return this.asgardClient.get<operations["login-deviceNumber"]["responses"]["200"]["content"]["application/json"]>("/user/login/deviceNumber",payload)
-    
-
-     }   
-      
-    
-
-    /**
-     * 
-     * Your GET endpoint
-     */
-    getAchievements(){
-    
-      return this.asgardClient.get<operations["get-achievements"]["responses"]["200"]["content"]["application/json"]>("/user/achievement")
-    
-
-     }   
-      
-    
-
-    /**
-     * 
-     * Your GET endpoint
-     */
-    getReward(payload:operations["get-Reward"]["requestBody"]["content"]["application/json"]){
-    
-      return this.asgardClient.get<operations["get-Reward"]["responses"]["200"]["content"]["application/json"]>("/user/achievement/getReward",payload)
-    
-
-     }   
-      
-}
-
-  import {AsgardClient, AsgardClientConfig} from "@imf/asgard-client";
-
-class Api {
-
-  public asgardClientConfig: AsgardClientConfig;
-
-  public asgardClient: AsgardClient
-
-  constructor(asgardClientConfig:AsgardClientConfig) {
-    this.asgardClientConfig = asgardClientConfig
-    this.asgardClient = new AsgardClient(this.asgardClientConfig)
-  }
-
-  connect() {
-    this.asgardClient.connect()
-  }
-
-  loginDeviceNumber<T>(payload:operations["loginDeviceNumber"]["requestBody"]["content"]["application/json"]) {
-    return this.asgardClient.get<operations["loginDeviceNumber"]["responses"]["200"]["content"]["application/json"]>('/login/deviceNumber', payload)
-  }
-
-}
-  class Api {
-
-    public asgardClientConfig: AsgardClientConfig;
-
-    public asgardClient: AsgardClient
-
-    constructor(asgardClientConfig:AsgardClientConfig) {
-      this.asgardClientConfig = asgardClientConfig
-      this.asgardClient = new AsgardClient(this.asgardClientConfig)
-    }
-
-    connect() {
-      this.asgardClient.connect()
-    }
-
-    loginDeviceNumber<T>(payload:operations["login-deviceNumber"]["requestBody"]["content"]["application/json"]) {
-      return this.asgardClient.get<operations["login-deviceNumber"]["responses"]["200"]["content"]["application/json"]>('/login/deviceNumber', payload)
-    }
-    
-  }
-
-}
-  
-import {AsgardClient, AsgardClientConfig} from "@imf/asgard-client";
-
-export class Api {
-
-    public asgardClientConfig: AsgardClientConfig;
-  
-    public asgardClient: AsgardClient
-  
-    constructor(asgardClientConfig:AsgardClientConfig) {
-      this.asgardClientConfig = asgardClientConfig
-      this.asgardClient = new AsgardClient(this.asgardClientConfig)
-    }
-  
-    connect() {
-      this.asgardClient.connect()
-    }
-  
-  
-    
-
-    /**
-     * 
-     * 设备号登陆
-     */
-    loginDeviceNumber(payload:operations["login-deviceNumber"]["requestBody"]["content"]["application/json"]){
-    
-      return this.asgardClient.get<operations["login-deviceNumber"]["responses"]["200"]["content"]["application/json"]>("/user/login/deviceNumber",payload)
-    
-
-     }   
-      
-    
-
-    /**
-     * 
-     * Your GET endpoint
-     */
-    getAchievements(){
-    
-      return this.asgardClient.get<operations["get-achievements"]["responses"]["200"]["content"]["application/json"]>("/user/achievement")
-    
-
-     }   
-      
-    
-
-    /**
-     * 
-     * Your GET endpoint
-     */
-    getReward(payload:operations["get-Reward"]["requestBody"]["content"]["application/json"]){
-    
-      return this.asgardClient.get<operations["get-Reward"]["responses"]["200"]["content"]["application/json"]>("/user/achievement/getReward",payload)
+      return this.asgardClient.get<operations["getMail"]["responses"]["200"]["content"]["application/json"]>("/mail/mail",{},options??options)
     
 
      }   
