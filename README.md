@@ -10,11 +10,11 @@
 
 <p align="center">
 <a href="https://www.npmjs.com/package/@haiyaotec/heimdall-ts" target="__blank"><img src="https://img.shields.io/npm/v/@haiyaotec/heimdall-ts?color=2B90B6&label=" alt="NPM version"></a>
-<a href="https://www.npmjs.com/package/@haiyaotec/heimdall-ts" target="__blank"><img alt="NPM Downloads" src="https://img.shields.io/npm/dm/@haiyaotec/heimdall-ts?color=349dbe&label="></a>
+<a href="https://www.npmjs.com/package/@slidev/cli" target="__blank"><img alt="NPM Downloads" src="https://img.shields.io/npm/dm/@haiyaotec/heimdall-ts?color=349dbe&label="></a>
 <a href="https://github.com/HaiyaoTec/heimdall-ts" target="__blank"><img src="https://img.shields.io/static/v1?label=&message=docs%20%26%20demos&color=45b8cd" alt="Docs & Demos"></a>
-<a href="https://sli.dev/themes/gallery.html" target="__blank"><img src="https://img.shields.io/static/v1?label=&message=themes&color=4ec5d4" alt="Themes"></a>
+<a href="https://github.com/HaiyaoTec/heimdall-ts" target="__blank"><img src="https://img.shields.io/static/v1?label=&message=themes&color=4ec5d4" alt="Themes"></a>
 <br>
-<a href="https://github.com/slidevjs/slidev" target="__blank"><img alt="GitHub stars" src="https://img.shields.io/github/stars/HaiyaoTec/heimdall-ts?style=social"></a>
+<a href="https://github.com/HaiyaoTec/heimdall-ts" target="__blank"><img alt="GitHub stars" src="https://img.shields.io/github/stars/HaiyaoTec/heimdall-ts?style=social"></a>
 </p>
 <img src="https://cdn.jsdelivr.net/gh/sudongyuer/image-bed@master/20220225/api-logo.2n9m692p1i80.webp" align="left"
      title="swagger-typescript-api logo by js2me" width="93" height="180">
