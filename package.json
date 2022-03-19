@@ -1,6 +1,6 @@
 {
   "name": "@haiyaotec/heimdall-ts",
-  "version": "2.1.6-alpha",
+  "version": "2.1.7-alpha",
   "description": "A cli to generate typescript api module",
   "type": "module",
   "keywords": ["swagger","openAPI","codegen"],
