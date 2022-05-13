@@ -71,7 +71,7 @@ Install heimdall-ts with npm
 ## Usage 🍉
 just run script `heimdall -g` in script then can help you to generate typeScript api module code
 
-All api files are in  **/node_modules/@imf/heimdall-ts/api** 
+All api files are in  **/node_modules/@haiyaotec/heimdall-ts/api** 
 
 `api/index.ts`
 
