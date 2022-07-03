@@ -4,7 +4,7 @@
 
 <p align="center">
 <a href="https://github.com/HaiyaoTec/heimdall-ts" target="_blank">
-<img src="https://static01.imgkr.com/temp/11972f34addd478ca4cc7a62fd7baf5f.jpg" alt="heimdall-ts" height="250" width="250"/>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3u4bu7qv8j205k05kjra.jpg" alt="heimdall-ts" height="250" width="250"/>
 </a>
 </p>
 
