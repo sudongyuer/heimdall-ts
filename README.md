@@ -8,8 +8,8 @@
 </p>
 
 <p align="center">
-<a href="https://www.npmjs.com/package/@haiyaotec/heimdall-ts" target="__blank"><img src="https://img.shields.io/npm/v/@haiyaotec/heimdall-ts?color=2B90B6&label=" alt="NPM version"></a>
-<a href="https://www.npmjs.com/package/@slidev/cli" target="__blank"><img alt="NPM Downloads" src="https://img.shields.io/npm/dm/@haiyaotec/heimdall-ts?color=349dbe&label="></a>
+<a href="https://www.npmjs.com/package/@sudongyuer/heimdall-ts" target="__blank"><img src="https://img.shields.io/npm/v/@sudongyuer/heimdall-ts?color=2B90B6&label=" alt="NPM version"></a>
+<a href="https://www.npmjs.com/package/@slidev/cli" target="__blank"><img alt="NPM Downloads" src="https://img.shields.io/npm/dm/@sudongyuer/heimdall-ts?color=349dbe&label="></a>
 <a href="https://github.com/HaiyaoTec/heimdall-ts" target="__blank"><img src="https://img.shields.io/static/v1?label=&message=docs%20%26%20demos&color=45b8cd" alt="Docs & Demos"></a>
 <a href="https://github.com/HaiyaoTec/heimdall-ts" target="__blank"><img src="https://img.shields.io/static/v1?label=&message=themes&color=4ec5d4" alt="Themes"></a>
 <br>
@@ -63,7 +63,7 @@ Generated api module [**Axios**](https://github.com/axios/axios) to make request
 Install heimdall-ts with npm
 
 ```bash
-  npm install @haiyaotec/heimdall-ts -D
+  npm install @sudongyuer/heimdall-ts -D
 ```
 
 ## Usage 🍉
@@ -71,7 +71,7 @@ Install heimdall-ts with npm
 只要在script中运行脚本 `heimdall -g `就可以帮助你生成TypeScript api模块代码，在自己的api目录中引入API
 模块，进行自定义设置。
 
-生成的API文件都在当前项目 **/node_modules/@haiyaotec/heimdall-ts/api** 中。
+生成的API文件都在当前项目 **/node_modules/@sudongyuer/heimdall-ts/api** 中。
 
 `api/index.ts`
 
@@ -89,7 +89,7 @@ import {
     HeraclesWithdrawApi,
     HeraclesPayApi,
     HeraclesAdApi as AdApi,
-} from '@haiyaotec/heimdall-ts';
+} from '@sudongyuer/heimdall-ts';
 
 import {AxiosRequestConfig, AxiosResponse} from 'axios';
 

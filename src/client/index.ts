@@ -36,7 +36,7 @@ if (options.generate) {
     await gitCloneProject(repos)
     //2.生成api文件
     //2.1删除之前下载过的API文件
-    await removeDir(path.resolve(cwd(), "node_modules/@haiyaotec/heimdall-ts/api"))
+    await removeDir(path.resolve(cwd(), "node_modules/@sudongyuer/heimdall-ts/api"))
 
     await createMultiApi(repos)
     //3.生成入口文件
@@ -150,7 +150,7 @@ function gitCloneProject(repo, isLog = false) {
 function generateMain() {
     return new Promise<void>((resolve, reject) => {
         //获取文件名
-        const fileNames = getFileName(path.resolve(cwd(), 'node_modules/@haiyaotec/heimdall-ts/api'))
+        const fileNames = getFileName(path.resolve(cwd(), 'node_modules/@sudongyuer/heimdall-ts/api'))
         //转换文件名 eg:  main.ts -> MainGameApi
         const transformedFileNames = fileNames.map(item => {
             return transformToCamel(item)
@@ -169,9 +169,9 @@ function generateMain() {
     }
    `
         //创建index文件
-        generateFile(path.resolve(cwd(), 'node_modules/@haiyaotec/heimdall-ts/api', 'index.ts'))
+        generateFile(path.resolve(cwd(), 'node_modules/@sudongyuer/heimdall-ts/api', 'index.ts'))
         //写入文件
-        writeFile(path.resolve(cwd(), 'node_modules/@haiyaotec/heimdall-ts/api', 'index.ts'), content).then(() => {
+        writeFile(path.resolve(cwd(), 'node_modules/@sudongyuer/heimdall-ts/api', 'index.ts'), content).then(() => {
             resolve()
         })
     })

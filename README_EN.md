@@ -10,8 +10,8 @@
 
 
 <p align="center">
-<a href="https://www.npmjs.com/package/@haiyaotec/heimdall-ts" target="__blank"><img src="https://img.shields.io/npm/v/@haiyaotec/heimdall-ts?color=2B90B6&label=" alt="NPM version"></a>
-<a href="https://www.npmjs.com/package/@haiyaotec/heimdall-ts" target="__blank"><img alt="NPM Downloads" src="https://img.shields.io/npm/dm/@haiyaotec/heimdall-ts?color=349dbe&label="></a>
+<a href="https://www.npmjs.com/package/@sudongyuer/heimdall-ts" target="__blank"><img src="https://img.shields.io/npm/v/@sudongyuer/heimdall-ts?color=2B90B6&label=" alt="NPM version"></a>
+<a href="https://www.npmjs.com/package/@sudongyuer/heimdall-ts" target="__blank"><img alt="NPM Downloads" src="https://img.shields.io/npm/dm/@sudongyuer/heimdall-ts?color=349dbe&label="></a>
 <a href="https://github.com/HaiyaoTec/heimdall-ts" target="__blank"><img src="https://img.shields.io/static/v1?label=&message=docs%20%26%20demos&color=45b8cd" alt="Docs & Demos"></a>
 <a href="https://github.com/HaiyaoTec/heimdall-ts" target="__blank"><img src="https://img.shields.io/static/v1?label=&message=themes&color=4ec5d4" alt="Themes"></a>
 <br>
@@ -65,13 +65,13 @@ have fun ^_^
 Install heimdall-ts with npm
 
 ```bash
-  npm install @haiyaotec/heimdall-ts -D
+  npm install @sudongyuer/heimdall-ts -D
 ```
 
 ## Usage 🍉
 just run script `heimdall -g` in script then can help you to generate typeScript api module code
 
-All api files are in  **/node_modules/@haiyaotec/heimdall-ts/api** 
+All api files are in  **/node_modules/@sudongyuer/heimdall-ts/api** 
 
 `api/index.ts`
 
@@ -89,7 +89,7 @@ import {
     HeraclesWithdrawApi,
     HeraclesPayApi,
     HeraclesAdApi as AdApi,
-} from '@haiyaotec/heimdall-ts';
+} from '@sudongyuer/heimdall-ts';
 
 import {AxiosRequestConfig, AxiosResponse} from 'axios';
 

@@ -18,7 +18,7 @@ function createApi(repo) {
             await generateApi({
                 name: `${item.replace(/((\.)\w*)*\.(yaml|json|yml)$/, '')}Api.ts`,
                 url: null,
-                output: path.resolve(process.cwd(), "node_modules/@haiyaotec/heimdall-ts/api"),
+                output: path.resolve(process.cwd(), "node_modules/@sudongyuer/heimdall-ts/api"),
                 input: path.resolve(process.cwd(), `${repo}`, `${item}`),
                 httpClientType: "axios", // or "fetch",
                 unwrapResponseData: true,
